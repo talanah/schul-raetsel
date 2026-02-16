@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schul-Rätsel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="glass-header">
+        <h1>Schul-Rätsel</h1>
+        <div class="stats">Fortschritt: <span id="solved-text">0</span> / 30</div>
+        <div class="progress-container">
+            <div id="progress" style="width: 0%"></div>
+        </div>
+    </header>
+
+    <main class="content">
+        <div id="puzzle-container">
+            </div>
+        
+        <div id="finish-area" class="finish-card" style="display: none;">
+            <h2>🏆 Rätsel-Meister!</h2>
+            <p>Alle 30 Aufgaben gelöst.</p>
+            <button onclick="window.location.reload()">Neustart</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+/* BLUE MYSTERY - DEEP MIDNIGHT DESIGN 
+   Fokus: Sattes Blau, kein Lila, moderne Typografie 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+  /* Hintergrund: Reines, tiefes Blau ohne Violett-Stich */
+  --bg: #020617;           
+  --card-bg: #0f172a;      
+  --accent: #38bdf8;       /* Ein klares, helles Blau */
+  --primary: #2563eb;      /* Kräftiges Mittelblau */
+  --success: #10b981;      
+  --error: #ef4444;        
+  --text: #f8fafc;         
+  --header-h: 110px;       
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  /* Ein kühler Blau-Verlauf (kein Lila!) */
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.2) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.4) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADER: Clean & Dunkelblau */
+/* Header im Grundzustand (ganz oben) */
+.glass-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  background: transparent; /* Am Anfang komplett klar */
+  border-bottom: 1px solid transparent; /* Linie unsichtbar */
+  transition: all 0.4s ease; /* Macht den Übergang weich */
+}
+
+/* Header, wenn gescrollt wurde */
+.glass-header.scrolled {
+  background: rgba(2, 6, 23, 0.5); 
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2); /* Linie erscheint */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.glass-header h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #fff;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.2));
+}
+
+.stats {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.progress-container {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05); 
+  border-radius: 10px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+#progress {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* CONTENT AREA */
+.content {
+  padding: calc(var(--header-h) + 50px) 24px 100px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.raetsel-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  scroll-margin-top: calc(var(--header-h) + 40px);
+  transition: all 0.3s ease;
+}
+
+.raetsel-card:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px);
+  background: #111827;
+}
+
+.raetsel-card.solved {
+  border-color: var(--success);
+  background: rgba(16, 185, 129, 0.02);
+}
+
+label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #efefef; /* Slate für besseren Kontrast */
+}
+
+/* INPUTS & BUTTONS */
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  background: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
+}
+
+input:disabled {
+  color: var(--success);
+  border-color: var(--success);
+  opacity: 0.8;
+}
+button {
+  flex: none; /* Verhindert, dass der Button breiter wird */
+  width: 70px; 
+  height: 52px;
+  background: rgba(56, 189, 248, 0.05); 
+  color: var(--accent);
+  border: 1px solid var(--accent); 
+  border-radius: 10px;
+  cursor: pointer;
+  
+  /* TYPOGRAFIE: Etwas dezenter als vorher */
+  font-weight: 600;
+  font-size: 1rem; /* Von 1.3rem auf 1.1rem verkleinert */
+  text-transform: uppercase;
+  letter-spacing: 1px; /* Kompakteres Spacing */
+  
+  /* Blurry-Effekt */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: rgba(56, 189, 248, 0.15);
+  transform: scale(1.03); /* Minimaler Zoom beim Hover */
+}
+
+/* Wenn das Rätsel gelöst ist, wird der Button grün und solid */
+.raetsel-card.solved button {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+  backdrop-filter: none;
+}
+
+
+
+/* FEEDBACK & FINISH */
+.hint-box {
+  color: var(--accent);
+  margin-top: 15px;
+  display: none;
+  font-size: 0.9rem;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+  border-color: var(--error) !important;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.finish-card {
+  text-align: center;
+  padding: 50px;
+  background: var(--card-bg);
+  border: 2px solid var(--success);
+  border-radius: 16px;
+}
