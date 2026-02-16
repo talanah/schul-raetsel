@@ -1,21 +1,21 @@
-/* BLUE MYSTERY - DEEP MIDNIGHT DESIGN 
-   Fokus: Sattes Blau, kein Lila, moderne Typografie 
+/* BLUE MYSTERY - FULL STYLESHEET
+   Features: Deep Midnight Design, Responsive Input, Mobile Optimized
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
 :root {
-  /* Hintergrund: Reines, tiefes Blau ohne Violett-Stich */
   --bg: #020617;           
   --card-bg: #0f172a;      
-  --accent: #38bdf8;       /* Ein klares, helles Blau */
-  --primary: #2563eb;      /* Kräftiges Mittelblau */
+  --accent: #38bdf8;       
+  --primary: #2563eb;      
   --success: #10b981;      
   --error: #ef4444;        
   --text: #f8fafc;         
   --header-h: 110px;       
 }
 
+/* RESET & GRUNDLAGEN */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -24,10 +24,13 @@
   outline: none;
 }
 
+html, body {
+  overflow-x: hidden; /* Verhindert seitliches Wackeln auf dem Handy */
+  background-color: var(--bg);
+}
+
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--bg);
-  /* Ein kühler Blau-Verlauf (kein Lila!) */
   background-image: 
     radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.2) 0px, transparent 50%),
     radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.4) 0px, transparent 50%);
@@ -37,13 +40,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* HEADER: Clean & Dunkelblau */
-/* Header im Grundzustand (ganz oben) */
+/* --- HEADER --- */
 .glass-header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: var(--header-h);
   z-index: 1000;
   display: flex;
@@ -51,31 +51,28 @@ body {
   justify-content: center;
   align-items: center;
   padding: 0 20px;
-  background: transparent; /* Am Anfang komplett klar */
-  border-bottom: 1px solid transparent; /* Linie unsichtbar */
-  transition: all 0.4s ease; /* Macht den Übergang weich */
+  background: transparent;
+  transition: all 0.4s ease;
 }
 
-/* Header, wenn gescrollt wurde */
 .glass-header.scrolled {
-  background: rgba(2, 6, 23, 0.5); 
-  backdrop-filter: blur(10px) saturate(180%);
+  background: rgba(2, 6, 23, 0.7); 
+  backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.2); /* Linie erscheint */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
 }
 
 .glass-header h1 {
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
   font-weight: 800;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #fff;
-  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.2));
+  text-align: center;
 }
 
 .stats {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--accent);
   margin-top: 6px;
   font-weight: 600;
@@ -91,18 +88,18 @@ body {
 }
 
 #progress {
-  height: 100%;
-  width: 0%;
+  height: 100%; width: 0%;
   background: var(--accent);
   box-shadow: 0 0 12px var(--accent);
-  transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: width 0.8s ease;
 }
 
-/* CONTENT AREA */
+/* --- MAIN CONTENT --- */
 .content {
-  padding: calc(var(--header-h) + 50px) 24px 100px;
-  max-width: 520px;
+  padding: calc(var(--header-h) + 40px) 20px 100px;
+  max-width: 800px; /* Hier wächst das Feld auf dem Desktop */
   margin: 0 auto;
+  width: 100%;
 }
 
 .raetsel-card {
@@ -111,45 +108,43 @@ body {
   padding: 30px;
   margin-bottom: 24px;
   border: 1px solid rgba(255, 255, 255, 0.03);
-  scroll-margin-top: calc(var(--header-h) + 40px);
-  transition: all 0.3s ease;
+  scroll-margin-top: calc(var(--header-h) + 20px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .raetsel-card:hover {
   border-color: rgba(56, 189, 248, 0.3);
-  transform: translateY(-2px);
   background: #111827;
-}
-
-.raetsel-card.solved {
-  border-color: var(--success);
-  background: rgba(16, 185, 129, 0.02);
 }
 
 label {
   display: block;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 400;
-  margin-bottom: 20px;
-  color: #efefef; /* Slate für besseren Kontrast */
+  margin-bottom: 25px;
+  color: #efefef;
+  line-height: 1.4;
 }
 
-/* INPUTS & BUTTONS */
+/* --- INPUTS & BUTTONS --- */
 .input-row {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
 }
 
 input {
-  flex: 1;
+  flex: 1; /* Nimmt den restlichen Platz ein */
+  min-width: 0; 
   background: #020617;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  padding: 14px 16px;
+  padding: 14px 18px;
   color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  transition: all 0.2s ease;
+  font-size: 1.1rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
 }
 
 input:focus {
@@ -157,28 +152,18 @@ input:focus {
   box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
 }
 
-input:disabled {
-  color: var(--success);
-  border-color: var(--success);
-  opacity: 0.8;
-}
 button {
-  flex: none; /* Verhindert, dass der Button breiter wird */
-  width: 70px; 
+  flex: none; /* Button bleibt kompakt */
+  width: 100px; 
   height: 52px;
-  background: rgba(56, 189, 248, 0.05); 
+  background: rgba(56, 189, 248, 0.05);
   color: var(--accent);
-  border: 1px solid var(--accent); 
+  border: 1px solid var(--accent);
   border-radius: 10px;
-  cursor: pointer;
-  
-  /* TYPOGRAFIE: Etwas dezenter als vorher */
-  font-weight: 600;
-  font-size: 1rem; /* Von 1.3rem auf 1.1rem verkleinert */
+  font-weight: 800;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  letter-spacing: 1px; /* Kompakteres Spacing */
-  
-  /* Blurry-Effekt */
+  cursor: pointer;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s ease;
@@ -186,28 +171,20 @@ button {
 
 button:hover {
   background: rgba(56, 189, 248, 0.15);
-  transform: scale(1.03); /* Minimaler Zoom beim Hover */
+  transform: scale(1.03);
 }
 
-/* Wenn das Rätsel gelöst ist, wird der Button grün und solid */
+/* --- STATES (Solved / Shake) --- */
+.raetsel-card.solved {
+  border-color: var(--success);
+  background: rgba(16, 185, 129, 0.02);
+}
+
 .raetsel-card.solved button {
   background: var(--success);
   border-color: var(--success);
   color: white;
   backdrop-filter: none;
-}
-
-
-
-/* FEEDBACK & FINISH */
-.hint-box {
-  color: var(--accent);
-  margin-top: 15px;
-  display: none;
-  font-size: 0.9rem;
-  padding: 12px;
-  border-radius: 8px;
-  background: rgba(56, 189, 248, 0.05);
 }
 
 .shake {
@@ -219,6 +196,35 @@ button:hover {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
   75% { transform: translateX(5px); }
+}
+
+/* --- MOBILE OPTIMIERUNG --- */
+@media (max-width: 600px) {
+  :root {
+    --header-h: 90px;
+  }
+  
+  .content {
+    padding: calc(var(--header-h) + 20px) 15px 80px;
+  }
+
+  .raetsel-card {
+    padding: 20px;
+  }
+
+  .input-row {
+    flex-direction: column; /* Input und Button untereinander */
+  }
+
+  input {
+    width: 100%;
+    font-size: 16px; /* Verhindert iOS-Auto-Zoom */
+  }
+
+  button {
+    width: 100%; /* Button über ganze Breite für Daumen-Bedienung */
+    height: 56px;
+  }
 }
 
 .finish-card {
