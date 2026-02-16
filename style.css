@@ -1,6 +1,4 @@
-/* BLUE MYSTERY - FULL STYLESHEET
-   Features: Deep Midnight Design, Responsive Input, Mobile Optimized
-*/
+/* BLUE MYSTERY - FULL STYLESHEET (Fixed Version) */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
@@ -25,7 +23,7 @@
 }
 
 html, body {
-  overflow-x: hidden; /* Verhindert seitliches Wackeln auf dem Handy */
+  overflow-x: hidden;
   background-color: var(--bg);
 }
 
@@ -97,7 +95,7 @@ body {
 /* --- MAIN CONTENT --- */
 .content {
   padding: calc(var(--header-h) + 40px) 20px 100px;
-  max-width: 800px; /* Hier wächst das Feld auf dem Desktop */
+  max-width: 800px;
   margin: 0 auto;
   width: 100%;
 }
@@ -135,7 +133,7 @@ label {
 }
 
 input {
-  flex: 1; /* Nimmt den restlichen Platz ein */
+  flex: 1;
   min-width: 0; 
   background: #020617;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -153,7 +151,7 @@ input:focus {
 }
 
 button {
-  flex: none; /* Button bleibt kompakt */
+  flex: none;
   width: 100px; 
   height: 52px;
   background: rgba(56, 189, 248, 0.05);
@@ -174,7 +172,7 @@ button:hover {
   transform: scale(1.03);
 }
 
-/* --- STATES (Solved / Shake) --- */
+/* --- STATES & TIPP-BOX --- */
 .raetsel-card.solved {
   border-color: var(--success);
   background: rgba(16, 185, 129, 0.02);
@@ -198,33 +196,53 @@ button:hover {
   75% { transform: translateX(5px); }
 }
 
-/* --- MOBILE OPTIMIERUNG --- */
+.hint-box {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(56, 189, 248, 0.1); 
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    color: var(--accent);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* --- MOBILE ANPASSUNG --- */
 @media (max-width: 600px) {
-  :root {
-    --header-h: 90px;
-  }
-  
-  .content {
-    padding: calc(var(--header-h) + 20px) 15px 80px;
-  }
+    .raetsel-card label {
+        margin-bottom: 35px;
+        font-size: 1.2rem;
+    }
 
-  .raetsel-card {
-    padding: 20px;
-  }
+    .input-row {
+        flex-direction: column; /* Stapeln für Handy */
+        gap: 25px; 
+    }
 
-  .input-row {
-    flex-direction: column; /* Input und Button untereinander */
-  }
+    input {
+        width: 100%;
+        font-size: 16px;
+        padding: 18px;
+    }
 
-  input {
-    width: 100%;
-    font-size: 16px; /* Verhindert iOS-Auto-Zoom */
-  }
+    button {
+        width: 100%;
+        height: 60px;
+        font-size: 1.2rem;
+    }
 
-  button {
-    width: 100%; /* Button über ganze Breite für Daumen-Bedienung */
-    height: 56px;
-  }
+    .hint-box {
+        margin-top: 35px; /* Extra viel Abstand nach dem Button */
+        padding: 20px;
+        font-size: 1rem;
+        border-radius: 12px;
+    }
+    
+    .raetsel-card {
+        margin-bottom: 45px; 
+        padding: 25px;
+    }
 }
 
 .finish-card {
