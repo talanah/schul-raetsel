@@ -3,31 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schul-Rätsel</title>
+    <title>IQ-Insel Rätsel-Challenge 26</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="glass-header">
-        <h1>Schul-Rätsel</h1>
-        <div class="stats">Fortschritt: <span id="solved-text">0</span> / 30</div>
-        <div class="progress-container">
-            <div id="progress" style="width: 0%"></div>
-        </div>
+<div class="container">
+    <header>
+        <h1>🏝️ IQ-Insel: Rätsel-Challenge 26</h1>
+        <p class="subtitle">Schaffst du es, alle Rätsel zu lösen? Trage deine Antworten ein!</p>
     </header>
 
-    <main class="content">
-        <div id="puzzle-container">
+    <main>
+        <div class="puzzle-card" id="card-1">
+            <div class="puzzle-header">
+                <span>Rätsel 1: Zahlenreihe</span>
+                <span class="badge">Leicht ⭐</span>
             </div>
-        
-        <div id="finish-area" class="finish-card" style="display: none;">
-            <h2>🏆 Rätsel-Meister!</h2>
-            <p>Alle 30 Aufgaben gelöst.</p>
-            <button onclick="window.location.reload()">Neustart</button>
+            <p><strong>Welche Zahl fehlt?</strong></p>
+            <div class="sequence-box">
+                2 - 6 - 12 - 20 - 30 - <strong>?</strong>
+            </div>
+            <div class="tipp">💡 <strong>Tipp:</strong> Finde eine Regelmäßigkeit. Wie verändern sich die Abstände von Zahl zu Zahl?</div>
+            <div class="input-group">
+                <input type="text" id="input-1" placeholder="Deine Zahl eingeben...">
+                <button onclick="checkAnswer(1, '42')">Prüfen</button>
+            </div>
+        </div>
+
+        <div class="puzzle-card" id="card-2">
+            <div class="puzzle-header">
+                <span>Rätsel 2: Welcher Raum ist das?</span>
+                <span class="badge">Leicht ⭐</span>
+            </div>
+            <div class="sequence-box text-code">
+                14 &nbsp; 1 &nbsp; 23 &nbsp; 9
+            </div>
+            <div class="tipp">💡 <strong>Tipp:</strong> Jeder Zahl entspricht einem Buchstaben im Alphabet (A=1, B=2...).</div>
+            <div class="input-group">
+                <input type="text" id="input-2" placeholder="Ein Wort eingeben...">
+                <button onclick="checkAnswer(2, 'nawi')">Prüfen</button>
+            </div>
+        </div>
+
+        <div class="puzzle-card" id="card-3">
+            <div class="puzzle-header">
+                <span>Rätsel 3: Texträtsel</span>
+                <span class="badge">Leicht ⭐</span>
+            </div>
+            <blockquote>
+                "Bamm, nimm die 1 von 1. Hahaha, nimm die 2 von 1. <br>
+                Check, nimm die 1 von 9. Und nun nimm die 3 von 2."
+            </blockquote>
+            <div class="tipp">💡 <strong>Tipp:</strong> Die Lösung ist ein Nomen. Es handelt sich um einen alltäglichen Gegenstand aus Papier.</div>
+            <div class="input-group">
+                <input type="text" id="input-3" placeholder="Ein Wort eingeben...">
+                <button onclick="checkAnswer(3, 'buch')">Prüfen</button>
+            </div>
+        </div>
+
+        <div class="puzzle-card" id="card-4">
+            <div class="puzzle-header">
+                <span>Rätsel 4: Geheimcode von Einstein</span>
+                <span class="badge">Leicht ⭐</span>
+            </div>
+            <p>Entschlüssele den folgenden Morsecode:</p>
+            <div class="code-display">
+                ·-·· / --- / -- ·- / --- ·· --- | ···· / -- · / ·-· / -- / --·· | --· / ·· / -- ·- / ····· | ··· / -- / -- · / · | -- / -· / --·· / -- · / --· / --·· | -··· ···· * --· / ·· / -· / · / | ·--- / ···· / -- · / -· / -· / · ··· / ···· / · / | -··· / ·· / ·-· / · / -· ·- / · / | ·· / -- / -- · / ····· | ·· / · / ··· / · / -· / · / -··· / -- / ····· ···· ·· ·*
+            </div>
+            <div class="tipp">💡 <strong>Tipp:</strong> Lange vertikale Striche (|) teilen die Wörter. Schrägstriche (/) teilen die Buchstaben. Das Zeichen * bedeutet Punkt (Ende des Satzes).</div>
+            <div class="input-group">
+                <input type="text" id="input-4" placeholder="Zitat eingeben...">
+                <button onclick="checkAnswer(4, 'Lass das mal unsere Sorgen sein')">Prüfen</button>
+            </div>
+        </div>
+
+        <div class="puzzle-card" id="card-5">
+            <div class="puzzle-header">
+                <span>Rätsel 5: Schachmatt-Chaos</span>
+                <span class="badge">Leicht ⭐</span>
+            </div>
+            <p><strong>Aufgabe:</strong> Setze Weiß mit einem einzigen Zug Schachmatt! (Das Brett ist voller weißer Damen)</p>
+            
+            <div class="chessboard-wrapper">
+                <div class="chessboard">
+                    <div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div>
+                    <div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div>
+                    <div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div>
+                    <div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece black">♚</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div>
+                    <div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece black">♟</span></div><div class="cell white-cell"><span class="piece black">♝</span></div><div class="cell black-cell"><span class="piece white">♗</span></div><div class="cell white-cell"><span class="piece white">♘</span></div><div class="cell black-cell"><span class="piece white">♗</span></div>
+                    <div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♗</span></div><div class="cell black-cell"><span class="piece white">♗</span></div><div class="cell white-cell"><span class="piece white">♘</span></div><div class="cell black-cell"></div><div class="cell white-cell"><span class="piece black">♝</span></div>
+                    <div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♘</span></div><div class="cell black-cell"></div><div class="cell white-cell"></div><div class="cell black-cell"><span class="piece black">♝</span></div>
+                    <div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♗</span></div><div class="cell white-cell"></div><div class="cell black-cell"><span class="piece white">♗</span></div><div class="cell white-cell"><span class="piece white">♔</span></div>
+                </div>
+            </div>
+
+            <div class="tipp">💡 <strong>Tipp:</strong> Die Lösung besteht aus dem Anfangs- und Endfeld der zu bewegenden Figur (z.B. "e2e4").</div>
+            <div class="input-group">
+                <input type="text" id="input-5" placeholder="z.B. c4c5...">
+                <button onclick="checkAnswer(5, 'e4e3')">Prüfen</button>
+            </div>
+        </div>
+
+
+        <div class="puzzle-card" id="card-14">
+            <div class="puzzle-header">
+                <span>Rätsel 14: Logikrätsel</span>
+                <span class="badge badge-medium">Mittel ⭐⭐</span>
+            </div>
+            <p>In einer Straße wohnen 5 Personen nebeneinander. Jede Person hat eine andere Lieblingsfarbe, ein anderes Hobby, ein anderes Lieblingstier und trinkt ein anderes Getränk.</p>
+            
+            <div class="hints-container">
+                <details>
+                    <summary>Klicke hier, um alle 15 Hinweise anzuzeigen</summary>
+                    <ol>
+                        <li>Die Person mit der roten Lieblingsfarbe wohnt ganz links.</li>
+                        <li>Die Person, die Schach spielt, trinkt Tee.</li>
+                        <li>Der Hund gehört der Person in der blauen Hütte.</li>
+                        <li>Die grüne Hütte steht direkt rechts von der gelben Hütte.</li>
+                        <li>In der mittleren Hütte wird Wasser getrunken.</li>
+                        <li>Die Person mit dem Kaninchen spielt Fußball.</li>
+                        <li>Die Person in der grünen Hütte trinkt Saft.</li>
+                        <li>Der Gamer wohnt neben der Person mit der Katze.</li>
+                        <li>Die Person in der gelben Hütte spielt Basketball.</li>
+                        <li>Die Person mit dem Pferd wohnt neben der Person, die Tee trinkt.</li>
+                        <li>Die blaue Hütte steht direkt neben der roten Hütte.</li>
+                        <li>Die Person mit dem Papagei wohnt nicht am Rand.</li>
+                        <li>Die Person, die Kaffee trinkt, wohnt rechts von der Person mit dem Hund.</li>
+                        <li>Die Person mit der lila Lieblingsfarbe spielt Videospiele.</li>
+                        <li>Die Person mit der Katze wohnt direkt links von der Person mit dem Papagei.</li>
+                    </ol>
+                </details>
+            </div>
+
+            <p><strong>Deine Antwort (Wer besitzt den Papagei?):</strong></p>
+            <div class="tipp">💡 <strong>Tipp:</strong> Die Lösung ist die Nummer des Hauses (von links nach rechts gezählt: 1, 2, 3, 4 oder 5).</div>
+            <div class="input-group">
+                <input type="text" id="input-14" placeholder="Welches Haus (Zahl) oder Farbe?">
+                <button onclick="checkAnswer(14, '4')">Prüfen</button>
+            </div>
+
+            <div class="matrix-container">
+                    </table>
+                </div>
+            </div>
         </div>
     </main>
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

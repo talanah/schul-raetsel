@@ -1,254 +1,409 @@
-/* BLUE MYSTERY - FULL STYLESHEET (Fixed Version) */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-
+/* --- DESIGN-VARIABLEN (CYBER BLUE MYSTERY) --- */
 :root {
-  --bg: #020617;           
-  --card-bg: #0f172a;      
-  --accent: #38bdf8;       
-  --primary: #2563eb;      
-  --success: #10b981;      
-  --error: #ef4444;        
-  --text: #f8fafc;         
-  --header-h: 110px;       
+    --bg: #020617;           
+    --card-bg: #0f172a;      
+    --accent: #38bdf8;       
+    --primary: #2563eb;      
+    --success: #10b981;
+    --error: #ef4444;      
+    --text: #f8fafc;         
+    --text-muted: #94a3b8;
 }
 
-/* RESET & GRUNDLAGEN */
+/* --- GLOBAL RESET --- */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-}
-
-html, body {
-  overflow-x: hidden;
-  background-color: var(--bg);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.2) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.4) 0px, transparent 50%);
-  background-attachment: fixed;
-  color: var(--text);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.25) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.6) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text);
+    line-height: 1.6;
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- CONTAINER --- */
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 /* --- HEADER --- */
-.glass-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: var(--header-h);
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-  background: transparent;
-  transition: all 0.4s ease;
+header {
+    text-align: center;
+    padding: 20px 20px 40px;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
-.glass-header.scrolled {
-  background: rgba(2, 6, 23, 0.7); 
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    margin-bottom: 10px;
 }
 
-.glass-header h1 {
-  font-size: clamp(1.2rem, 5vw, 1.6rem);
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #fff;
-  text-align: center;
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
 }
 
-.stats {
-  font-size: 1rem;
-  color: var(--accent);
-  margin-top: 6px;
-  font-weight: 600;
+/* --- PUZZLE CARDS --- */
+.puzzle-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s;
 }
 
-.progress-container {
-  width: 200px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.05); 
-  border-radius: 10px;
-  margin-top: 12px;
-  overflow: hidden;
+.puzzle-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.25);
+    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.05);
+    background: #111827;
 }
 
-#progress {
-  height: 100%; width: 0%;
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent);
-  transition: width 0.8s ease;
+.puzzle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 20px;
 }
 
-/* --- MAIN CONTENT --- */
-.content {
-  padding: calc(var(--header-h) + 40px) 20px 100px;
-  max-width: 800px;
-  margin: 0 auto;
-  width: 100%;
+/* --- BADGES --- */
+.badge {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
-.raetsel-card {
-  background: var(--card-bg);
-  border-radius: 16px;
-  padding: 30px;
-  margin-bottom: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  scroll-margin-top: calc(var(--header-h) + 20px);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+.badge-medium {
+    background: rgba(249, 115, 22, 0.1);
+    color: #f97316;
+    border-color: rgba(249, 115, 22, 0.2);
 }
 
-.raetsel-card:hover {
-  border-color: rgba(56, 189, 248, 0.3);
-  background: #111827;
+/* --- TEXT FORMATTING & BOXES --- */
+p strong {
+    color: #fff;
+    font-weight: 600;
 }
 
-label {
-  display: block;
-  font-size: 1.25rem;
-  font-weight: 400;
-  margin-bottom: 25px;
-  color: #efefef;
-  line-height: 1.4;
+.puzzle-card p {
+    margin-bottom: 15px;
+    color: #e2e8f0;
 }
 
-/* --- INPUTS & BUTTONS --- */
-.input-row {
-  display: flex;
-  gap: 12px;
-  width: 100%;
-  align-items: center;
+.sequence-box {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-align: center;
+    background: #020617;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-weight: 600;
+    margin: 20px 0;
 }
 
-input {
-  flex: 1;
-  min-width: 0; 
-  background: #020617;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 14px 18px;
-  color: #fff;
-  font-size: 1.1rem;
-  font-family: inherit;
-  transition: border-color 0.2s;
+.sequence-box strong {
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }
 
-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
+.text-code {
+    font-family: 'Fira Code', monospace;
+    letter-spacing: 8px;
+}
+
+blockquote {
+    font-style: italic;
+    background: #020617;
+    padding: 20px;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+    color: #e2e8f0;
+    line-height: 1.7;
+}
+
+.code-display {
+    font-family: 'Fira Code', monospace;
+    word-break: break-all;
+    background: #020617;
+    color: #e2e8f0;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    letter-spacing: 1px;
+    margin: 20px 0;
+    font-size: 0.95rem;
+}
+
+/* Tipps standardmäßig ausgeblendet, Sichtbarkeit wird via JS gesteuert */
+.tipp {
+    display: none; 
+    background: rgba(56, 189, 248, 0.05);
+    border-left: 3px solid var(--accent);
+    padding: 15px 18px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: var(--accent);
+    border-radius: 0 8px 8px 0;
+    line-height: 1.5;
+}
+
+/* --- INPUT ROWS & BUTTONS --- */
+.input-group {
+    margin-top: 25px;
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    background: #020617;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 14px 18px;
+    color: #fff;
+    font-size: 1.05rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+}
+
+input[type="text"]::placeholder {
+    color: #475569;
 }
 
 button {
-  flex: none;
-  width: 100px; 
-  height: 52px;
-  background: rgba(56, 189, 248, 0.05);
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  border-radius: 10px;
-  font-weight: 800;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+    flex: none;
+    background: rgba(56, 189, 248, 0.08);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0 24px;
+    height: 52px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-  background: rgba(56, 189, 248, 0.15);
-  transform: scale(1.03);
+    background: var(--accent);
+    color: #020617;
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
 
-/* --- STATES & TIPP-BOX --- */
-.raetsel-card.solved {
-  border-color: var(--success);
-  background: rgba(16, 185, 129, 0.02);
+/* --- STATUS-STYLES (ERFOLG & FEHLER) --- */
+.puzzle-card.solved {
+    border-color: var(--success);
+    background: rgba(16, 185, 129, 0.02);
 }
 
-.raetsel-card.solved button {
-  background: var(--success);
-  border-color: var(--success);
-  color: white;
-  backdrop-filter: none;
+.puzzle-card.solved button {
+    background: var(--success);
+    border-color: var(--success);
+    color: #fff;
+    box-shadow: none;
+    cursor: default;
+    transform: none;
 }
 
-.shake {
-  animation: shake 0.4s ease-in-out;
-  border-color: var(--error) !important;
+.shake-input {
+    animation: shake 0.4s ease-in-out;
+    border-color: var(--error) !important;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
 }
 
-.hint-box {
-    display: none;
-    margin-top: 20px;
-    padding: 15px;
-    background: rgba(56, 189, 248, 0.1); 
-    border-left: 3px solid var(--accent);
+/* --- IMAGES & CHESSBOARD --- */
+.puzzle-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 20px auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.chessboard-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.chessboard {
+    width: 340px;
+    height: 340px;
+    border: 6px solid #1e293b;
     border-radius: 8px;
-    color: var(--accent);
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    user-select: none;
+}
+
+.white-cell { background-color: #e2e8f0; }
+.black-cell { background-color: #475569; }
+.piece.black { color: #0f172a; filter: drop-shadow(0px 1px 1px rgba(255,255,255,0.2)); }
+.piece.white { color: #ffffff; filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.8)); }
+
+/* --- ELEMENTS FÜR DAS LOGIKRÄTSEL (PAPAGEI) --- */
+
+/* Optimierter Seitenabstand & spürbar mehr Abstand nach unten */
+.hints-container {
+    padding: 0 25px; 
+    margin-top: 20px;
+    margin-bottom: 45px;
+}
+
+details {
+    background: #020617;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+}
+
+details[open] {
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+summary {
+    font-weight: 600;
+    color: #fff;
+    user-select: none;
+}
+
+ol {
     font-size: 0.95rem;
-    line-height: 1.4;
+    padding-left: 20px;
+    margin-top: 15px;
+    color: #cbd5e1;
 }
 
-/* --- MOBILE ANPASSUNG --- */
+ol li {
+    margin-bottom: 8px;
+}
+
+/* Optimierter Seitenabstand für die Matrix-Sektion */
+.matrix-container {
+    padding: 0 25px;
+    margin-top: 35px;
+}
+
+.table-title {
+    font-size: 1.1rem; 
+    font-weight: 600; 
+    color: #fff;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+    background: #020617;
+}
+
+th, td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+th {
+    background-color: rgba(56, 189, 248, 0.08);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+td {
+    color: #cbd5e1;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.highlight-text {
+    color: #10b981;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 600px) {
-    .raetsel-card label {
-        margin-bottom: 35px;
-        font-size: 1.2rem;
-    }
-
-    .input-row {
-        flex-direction: column; /* Stapeln für Handy */
-        gap: 25px; 
-    }
-
-    input {
-        width: 100%;
-        font-size: 16px;
-        padding: 18px;
-    }
-
-    button {
-        width: 100%;
-        height: 60px;
-        font-size: 1.2rem;
-    }
-
-    .hint-box {
-        margin-top: 35px; /* Extra viel Abstand nach dem Button */
-        padding: 20px;
-        font-size: 1rem;
-        border-radius: 12px;
-    }
-    
-    .raetsel-card {
-        margin-bottom: 45px; 
-        padding: 25px;
-    }
-}
-
-.finish-card {
-  text-align: center;
-  padding: 50px;
-  background: var(--card-bg);
-  border: 2px solid var(--success);
-  border-radius: 16px;
+    body { padding: 20px 10px; }
+    .puzzle-card { padding: 20px; }
+    .input-group { flex-direction: column; gap: 12px; }
+    button { width: 100%; }
+    .chessboard { width: 280px; height: 280px; }
+    .cell { font-size: 22px; }
+    .hints-container, .matrix-container { padding: 0 5px; margin-bottom: 30px; }
 }
