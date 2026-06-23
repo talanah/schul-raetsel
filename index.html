@@ -1,410 +1,992 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IQ-Insel Rätsel-Challenge 26</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="container">
-    <header>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
         <h1>🏝️ IQ-Insel: Rätsel-Challenge 26</h1>
-        <p class="subtitle">Schaffst du es, alle Rätsel zu lösen? Trage deine Antworten ein!</p>
-    </header>
+        <p class="subtitle">
+          Schaffst du es, alle Rätsel zu lösen? Trage deine Antworten ein!
+        </p>
+      </header>
 
-    <main>
-
+      <main>
         <!-- ===== RÄTSEL 1: ZAHLENREIHE ===== -->
         <div class="puzzle-card" id="card-1">
-            <div class="puzzle-header">
-                <span>Rätsel 1: Zahlenreihe</span>
-                <span class="badge">Leicht ⭐</span>
-            </div>
-            <p><strong>Welche Zahl fehlt?</strong></p>
-            <div class="sequence-box">
-                2 - 6 - 12 - 20 - 30 - <strong>?</strong>
-            </div>
-            <div class="tipp">💡 <strong>Tipp:</strong> Finde eine Regelmäßigkeit. Wie verändern sich die Abstände von Zahl zu Zahl?</div>
-            <div class="input-group">
-                <input type="text" id="input-1" placeholder="Deine Zahl eingeben...">
-                <button onclick="checkAnswer(1, '42')">Prüfen</button>
-            </div>
+          <div class="puzzle-header">
+            <span>Rätsel 1: Zahlenreihe</span>
+            <span class="badge">Leicht ⭐</span>
+          </div>
+          <p><strong>Welche Zahl fehlt?</strong></p>
+          <div class="sequence-box">
+            2 - 6 - 12 - 20 - 30 - <strong>?</strong>
+          </div>
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Finde eine Regelmäßigkeit. Wie verändern
+            sich die Abstände von Zahl zu Zahl?
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="input-1"
+              placeholder="Deine Zahl eingeben..."
+            />
+            <button onclick="checkAnswer(1, '42')">Prüfen</button>
+          </div>
         </div>
 
         <!-- ===== RÄTSEL 2: RAUMCODE ===== -->
         <div class="puzzle-card" id="card-2">
-            <div class="puzzle-header">
-                <span>Rätsel 2: Welcher Raum ist das?</span>
-                <span class="badge">Leicht ⭐</span>
-            </div>
-            <div class="sequence-box text-code">
-                14 &nbsp; 1 &nbsp; 23 &nbsp; 9
-            </div>
-            <div class="tipp">💡 <strong>Tipp:</strong> Jeder Zahl entspricht einem Buchstaben im Alphabet (A=1, B=2...).</div>
-            <div class="input-group">
-                <input type="text" id="input-2" placeholder="Ein Wort eingeben...">
-                <button onclick="checkAnswer(2, 'nawi')">Prüfen</button>
-            </div>
+          <div class="puzzle-header">
+            <span>Rätsel 2: Welcher Raum ist das?</span>
+            <span class="badge">Leicht ⭐</span>
+          </div>
+          <div class="sequence-box text-code">
+            14 &nbsp; 1 &nbsp; 23 &nbsp; 9
+          </div>
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Jeder Zahl entspricht einem Buchstaben im
+            Alphabet (A=1, B=2...).
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="input-2"
+              placeholder="Ein Wort eingeben..."
+            />
+            <button onclick="checkAnswer(2, 'nawi')">Prüfen</button>
+          </div>
         </div>
 
         <!-- ===== RÄTSEL 3: TEXTRÄTSEL ===== -->
         <div class="puzzle-card" id="card-3">
-            <div class="puzzle-header">
-                <span>Rätsel 3: Texträtsel</span>
-                <span class="badge">Leicht ⭐</span>
-            </div>
-            <blockquote>
-                "Bamm, nimm die 1 von 1. Hahaha, nimm die 2 von 1. <br>
-                Check, nimm die 1 von 9. Und nun nimm die 3 von 2."
-            </blockquote>
-            <div class="tipp">💡 <strong>Tipp:</strong> Die Lösung ist ein Nomen. Es handelt sich um einen alltäglichen Gegenstand aus Papier.</div>
-            <div class="input-group">
-                <input type="text" id="input-3" placeholder="Ein Wort eingeben...">
-                <button onclick="checkAnswer(3, 'buch')">Prüfen</button>
-            </div>
+          <div class="puzzle-header">
+            <span>Rätsel 3: Texträtsel</span>
+            <span class="badge">Leicht ⭐</span>
+          </div>
+          <blockquote>
+            "Bamm, nimm die 1 von 1. Hahaha, nimm die 2 von 1. <br />
+            Check, nimm die 1 von 9. Und nun nimm die 3 von 2."
+          </blockquote>
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Die Lösung ist ein Nomen. Es handelt sich
+            um einen alltäglichen Gegenstand aus Papier.
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="input-3"
+              placeholder="Ein Wort eingeben..."
+            />
+            <button onclick="checkAnswer(3, 'buch')">Prüfen</button>
+          </div>
         </div>
 
         <!-- ===== RÄTSEL 4: MORSECODE ===== -->
         <div class="puzzle-card" id="card-4">
-            <div class="puzzle-header">
-                <span>Rätsel 4: Geheimcode von Einstein</span>
-                <span class="badge">Leicht ⭐</span>
-            </div>
-            <p>Entschlüssele den folgenden Morsecode:</p>
-            <div class="code-display">
-                .-.. --- --. .. -.- / -... .-. .. -. --. - / -.. .. -.-. .... / ...- --- -. / .- / -. .- -.-. .... / -...  */ -.. . .. -. . / ..-. .- -. - .- ... .. . / .-- --- .... .. -. / -.. ..- / .-- .. .-.. .-.. ... - *
-            </div>
-            <div class="tipp">💡 <strong>Tipp:</strong> Lange vertikale Striche (|) teilen die Wörter. Schrägstriche (/) teilen die Buchstaben. Das Zeichen * bedeutet Punkt (Ende des Satzes).</div>
-            <div class="input-group">
-                <input type="text" id="input-4" placeholder="Zitat eingeben...">
-                <button onclick="checkAnswer(4, 'logik bringt dich von a nach b deine fantasie wohin du willst')">Prüfen</button>
-            </div>
+          <div class="puzzle-header">
+            <span>Rätsel 4: Geheimcode von Einstein</span>
+            <span class="badge">Leicht ⭐</span>
+          </div>
+          <p>Entschlüssele den folgenden Morsecode:</p>
+          <div class="code-display">
+            .-.. --- --. .. -.- / -... .-. .. -. --. - / -.. .. -.-. .... / ...-
+            --- -. / .- / -. .- -.-. .... / -... */ -.. . .. -. . / ..-. .- -. -
+            .- ... .. . / .-- --- .... .. -. / -.. ..- / .-- .. .-.. .-.. ... -
+            *
+          </div>
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Lange vertikale Striche (|) teilen die
+            Wörter. Schrägstriche (/) teilen die Buchstaben. Das Zeichen *
+            bedeutet Punkt (Ende des Satzes).
+          </div>
+          <div class="input-group">
+            <input type="text" id="input-4" placeholder="Zitat eingeben..." />
+            <button
+              onclick="
+                checkAnswer(
+                  4,
+                  'logik bringt dich von a nach b deine fantasie wohin du willst',
+                )
+              "
+            >
+              Prüfen
+            </button>
+          </div>
         </div>
 
         <!-- ===== RÄTSEL 5: SCHACH ===== -->
         <div class="puzzle-card" id="card-5">
-            <div class="puzzle-header">
-                <span>Rätsel 5: Schachmatt-Chaos</span>
-                <span class="badge">Leicht ⭐</span>
-            </div>
-            <p><strong>Aufgabe:</strong> Setze Weiß mit einem einzigen Zug Schachmatt! (Das Brett ist voller weißer Damen)</p>
-            
-            <div class="chessboard-wrapper">
-                <div class="chessboard">
-                    <div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div>
-                    <div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div>
-                    <div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div>
-                    <div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece black">♚</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div>
-                    <div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece black">♟</span></div><div class="cell black-cell"><span class="piece black">♟</span></div><div class="cell white-cell"><span class="piece black">♝</span></div><div class="cell black-cell"><span class="piece white">♗</span></div><div class="cell white-cell"><span class="piece white">♘</span></div><div class="cell black-cell"><span class="piece white">♗</span></div>
-                    <div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♗</span></div><div class="cell black-cell"><span class="piece white">♗</span></div><div class="cell white-cell"><span class="piece white">♘</span></div><div class="cell black-cell"></div><div class="cell white-cell"><span class="piece black">♝</span></div>
-                    <div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♘</span></div><div class="cell black-cell"></div><div class="cell white-cell"></div><div class="cell black-cell"><span class="piece black">♝</span></div>
-                    <div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♕</span></div><div class="cell white-cell"><span class="piece white">♕</span></div><div class="cell black-cell"><span class="piece white">♗</span></div><div class="cell white-cell"></div><div class="cell black-cell"><span class="piece white">♗</span></div><div class="cell white-cell"><span class="piece white">♔</span></div>
-                </div>
-            </div>
+          <div class="puzzle-header">
+            <span>Rätsel 5: Schachmatt-Chaos</span>
+            <span class="badge">Leicht ⭐</span>
+          </div>
+          <p>
+            <strong>Aufgabe:</strong> Setze Weiß mit einem einzigen Zug
+            Schachmatt! (Das Brett ist voller weißer Damen)
+          </p>
 
-            <div class="tipp">💡 <strong>Tipp:</strong> Die Lösung besteht aus dem Anfangs- und Endfeld der zu bewegenden Figur (z.B. "e2e4").</div>
-            <div class="input-group">
-                <input type="text" id="input-5" placeholder="z.B. c4c5...">
-                <button onclick="checkAnswer(5, 'e4e3')">Prüfen</button>
+          <div class="chessboard-wrapper">
+            <div class="chessboard">
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece black">♟</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece black">♟</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece black">♟</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece black">♚</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece black">♟</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece black">♟</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece black">♟</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece black">♝</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♗</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♘</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♗</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♗</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♗</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♘</span>
+              </div>
+              <div class="cell black-cell"></div>
+              <div class="cell white-cell">
+                <span class="piece black">♝</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♘</span>
+              </div>
+              <div class="cell black-cell"></div>
+              <div class="cell white-cell"></div>
+              <div class="cell black-cell">
+                <span class="piece black">♝</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♕</span>
+              </div>
+              <div class="cell black-cell">
+                <span class="piece white">♗</span>
+              </div>
+              <div class="cell white-cell"></div>
+              <div class="cell black-cell">
+                <span class="piece white">♗</span>
+              </div>
+              <div class="cell white-cell">
+                <span class="piece white">♔</span>
+              </div>
             </div>
+          </div>
+
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Die Lösung besteht aus dem Anfangs- und
+            Endfeld der zu bewegenden Figur (z.B. "e2e4").
+          </div>
+          <div class="input-group">
+            <input type="text" id="input-5" placeholder="z.B. c4c5..." />
+            <button onclick="checkAnswer(5, 'e4e3')">Prüfen</button>
+          </div>
         </div>
 
         <!-- ===== NEU: RÄTSEL 6: WER LÜGT? ===== -->
         <div class="puzzle-card" id="card-6">
-            <div class="puzzle-header">
-                <span>Rätsel 6: Wer lügt?</span>
-                <span class="badge">Leicht ⭐</span>
-            </div>
-            <p>Drei Freunde sagen:</p>
+          <div class="puzzle-header">
+            <span>Rätsel 6: Wer lügt?</span>
+            <span class="badge">Leicht ⭐</span>
+          </div>
+          <p>Drei Freunde sagen:</p>
 
-            <div class="statement-grid">
-                <div class="statement-item">
-                    <span class="statement-name">Anna</span>
-                    <span class="statement-text">„Ben hat den Keks gegessen."</span>
-                </div>
-                <div class="statement-item">
-                    <span class="statement-name">Ben</span>
-                    <span class="statement-text">„Clara war es."</span>
-                </div>
-                <div class="statement-item">
-                    <span class="statement-name">Clara</span>
-                    <span class="statement-text">„Ben lügt."</span>
-                </div>
+          <div class="statement-grid">
+            <div class="statement-item">
+              <span class="statement-name">Anna</span>
+              <span class="statement-text">„Ben hat den Keks gegessen."</span>
             </div>
-
-            <p style="margin-top:18px;">Nur <strong>eine Person</strong> sagt die Wahrheit. Wer hat den Keks gegessen?</p>
-
-            <div class="tipp">💡 <strong>Tipp:</strong> Überlege: Wenn Ben die Wahrheit sagt, was passiert dann mit den anderen Aussagen? Probiere alle drei Fälle durch.</div>
-            <div class="input-group">
-                <input type="text" id="input-6" placeholder="Name eingeben...">
-                <button onclick="checkAnswer(6, 'clara')">Prüfen</button>
+            <div class="statement-item">
+              <span class="statement-name">Ben</span>
+              <span class="statement-text">„Clara war es."</span>
             </div>
+            <div class="statement-item">
+              <span class="statement-name">Clara</span>
+              <span class="statement-text">„Ben lügt."</span>
+            </div>
+          </div>
+
+          <p style="margin-top: 18px">
+            Nur <strong>eine Person</strong> sagt die Wahrheit. Wer hat den Keks
+            gegessen?
+          </p>
+
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Überlege: Wenn Ben die Wahrheit sagt, was
+            passiert dann mit den anderen Aussagen? Probiere alle drei Fälle
+            durch.
+          </div>
+          <div class="input-group">
+            <input type="text" id="input-6" placeholder="Name eingeben..." />
+            <button onclick="checkAnswer(6, 'clara')">Prüfen</button>
+          </div>
         </div>
 
         <!-- ===== NEU: RÄTSEL 7: STREICHHOLZRÄTSEL ===== -->
         <div class="puzzle-card" id="card-7">
-            <div class="puzzle-header">
-                <span>Rätsel 7: Das Streichholzrätsel</span>
-                <span class="badge">Mittel ⭐⭐</span>
+          <div class="puzzle-header">
+            <span>Rätsel 7: Das Streichholzrätsel</span>
+            <span class="badge">Mittel ⭐⭐</span>
+          </div>
+          <p>
+            Du hast <strong>6 Streichhölzer</strong> und sollst damit
+            <strong>4 gleich große Dreiecke</strong> bilden.
+          </p>
+          <p>Wie ist das möglich?</p>
+
+          <div class="match-visual">
+            <div class="matches-row">
+              <div class="match"></div>
+              <div class="match"></div>
+              <div class="match"></div>
+              <div class="match"></div>
+              <div class="match"></div>
+              <div class="match"></div>
             </div>
-            <p>Du hast <strong>6 Streichhölzer</strong> und sollst damit <strong>4 gleich große Dreiecke</strong> bilden.</p>
-            <p>Wie ist das möglich?</p>
+          </div>
 
-            <div class="match-visual">
-                <div class="matches-row">
-                    <div class="match"></div>
-                    <div class="match"></div>
-                    <div class="match"></div>
-                    <div class="match"></div>
-                    <div class="match"></div>
-                    <div class="match"></div>
-                </div>
-            </div>
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Denke nicht nur in zwei Dimensionen — was
+            passiert, wenn du die Streichhölzer in die Höhe baust?
+          </div>
 
-            <div class="tipp">💡 <strong>Tipp:</strong> Denke nicht nur in zwei Dimensionen — was passiert, wenn du die Streichhölzer in die Höhe baust?</div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="input-7"
+              placeholder="Wie? Deine Antwort..."
+            />
 
-            <div class="input-group">
-                <input type="text" id="input-7" placeholder="Wie? Deine Antwort...">
+            <button
+              onclick="
+                checkAnswer(7, [
+                  'tetraeder',
+                  'pyramide',
+                  '3d-tetraeder',
+                  '3d-pyramide',
+                  'tetrahedron',
+                  'pyramid',
+                  '3d-tetrahedron',
+                  '3d-pyramid',
+                ])
+              "
+            >
+              Prüfen
+            </button>
+          </div>
 
-                <button onclick="checkAnswer(7, ['tetraeder', 'pyramide', '3d-tetraeder', '3d-pyramide', 'tetrahedron', 'pyramid', '3d-tetrahedron', '3d-pyramid'])">
-                    Prüfen
-                </button>
-            </div>
-
-            <div class="solution-reveal" id="solution-7" style="display:none;">
-                <p style="margin-bottom:12px; color:#94a3b8;">Lösung: Ein <strong style="color:#38bdf8;">3D-Tetraeder</strong> (Pyramide mit Dreiecksbasis). Die 6 Kanten bilden 4 gleichseitige Dreiecke!</p>
-                <svg viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" style="max-width:200px; display:block; margin:0 auto;">
-                    <!-- Tetraeder-Skizze -->
-                    <line x1="100" y1="20" x2="30" y2="140" stroke="#f97316" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="100" y1="20" x2="170" y2="140" stroke="#f97316" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="30" y1="140" x2="170" y2="140" stroke="#f97316" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="100" y1="20" x2="100" y2="120" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-dasharray="6,4"/>
-                    <line x1="30" y1="140" x2="100" y2="120" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-dasharray="6,4"/>
-                    <line x1="170" y1="140" x2="100" y2="120" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-dasharray="6,4"/>
-                    <circle cx="100" cy="20" r="5" fill="#f97316"/>
-                    <circle cx="30" cy="140" r="5" fill="#f97316"/>
-                    <circle cx="170" cy="140" r="5" fill="#f97316"/>
-                    <circle cx="100" cy="120" r="5" fill="#38bdf8"/>
-                </svg>
-            </div>
+          <div class="solution-reveal" id="solution-7" style="display: none">
+            <p style="margin-bottom: 12px; color: #94a3b8">
+              Lösung: Ein
+              <strong style="color: #38bdf8">3D-Tetraeder</strong> (Pyramide mit
+              Dreiecksbasis). Die 6 Kanten bilden 4 gleichseitige Dreiecke!
+            </p>
+            <svg
+              viewBox="0 0 200 170"
+              xmlns="http://www.w3.org/2000/svg"
+              style="max-width: 200px; display: block; margin: 0 auto"
+            >
+              <!-- Tetraeder-Skizze -->
+              <line
+                x1="100"
+                y1="20"
+                x2="30"
+                y2="140"
+                stroke="#f97316"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+              <line
+                x1="100"
+                y1="20"
+                x2="170"
+                y2="140"
+                stroke="#f97316"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+              <line
+                x1="30"
+                y1="140"
+                x2="170"
+                y2="140"
+                stroke="#f97316"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+              <line
+                x1="100"
+                y1="20"
+                x2="100"
+                y2="120"
+                stroke="#38bdf8"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-dasharray="6,4"
+              />
+              <line
+                x1="30"
+                y1="140"
+                x2="100"
+                y2="120"
+                stroke="#38bdf8"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-dasharray="6,4"
+              />
+              <line
+                x1="170"
+                y1="140"
+                x2="100"
+                y2="120"
+                stroke="#38bdf8"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-dasharray="6,4"
+              />
+              <circle cx="100" cy="20" r="5" fill="#f97316" />
+              <circle cx="30" cy="140" r="5" fill="#f97316" />
+              <circle cx="170" cy="140" r="5" fill="#f97316" />
+              <circle cx="100" cy="120" r="5" fill="#38bdf8" />
+            </svg>
+          </div>
         </div>
 
         <!-- ===== NEU: RÄTSEL 8: TÜRERRÄTSEL ===== -->
         <div class="puzzle-card" id="card-8">
-            <div class="puzzle-header">
-                <span>Rätsel 8: Das Türerrätsel</span>
-                <span class="badge badge-hard">Schwer ⭐⭐⭐</span>
+          <div class="puzzle-header">
+            <span>Rätsel 8: Das Türerrätsel</span>
+            <span class="badge badge-hard">Schwer ⭐⭐⭐</span>
+          </div>
+          <div class="door-scenario">
+            <div class="door-box">
+              <div class="door-icon">🚪</div>
+              <div class="door-label good">Freiheit</div>
             </div>
-            <div class="door-scenario">
-                <div class="door-box">
-                    <div class="door-icon">🚪</div>
-                    <div class="door-label good">Freiheit</div>
-                </div>
-                <div class="door-middle-text">VS</div>
-                <div class="door-box">
-                    <div class="door-icon">🚪</div>
-                    <div class="door-label bad">Falle</div>
-                </div>
+            <div class="door-middle-text">VS</div>
+            <div class="door-box">
+              <div class="door-icon">🚪</div>
+              <div class="door-label bad">Falle</div>
             </div>
+          </div>
 
-            <p>Du stehst vor zwei Türen. Eine führt in die <strong>Freiheit</strong>, eine in die <strong>Falle</strong>. Vor jeder Tür steht ein Wächter:</p>
-            <ul class="guard-list">
-                <li>Einer <strong>lügt immer</strong></li>
-                <li>Einer sagt <strong>immer die Wahrheit</strong></li>
-            </ul>
-            <p style="margin-top:14px;">Du darfst <strong>eine einzige Frage</strong> stellen. Welche Frage stellst du, um sicher die Freiheitstür zu finden?</p>
+          <p>
+            Du stehst vor zwei Türen. Eine führt in die
+            <strong>Freiheit</strong>, eine in die <strong>Falle</strong>. Vor
+            jeder Tür steht ein Wächter:
+          </p>
+          <ul class="guard-list">
+            <li>Einer <strong>lügt immer</strong></li>
+            <li>Einer sagt <strong>immer die Wahrheit</strong></li>
+          </ul>
+          <p style="margin-top: 14px">
+            Du darfst <strong>eine einzige Frage</strong> stellen. Welche Frage
+            stellst du, um sicher die Freiheitstür zu finden?
+          </p>
 
-            <div class="tipp">💡 <strong>Tipp:</strong> Die richtige Frage funktioniert bei beiden Wächtern gleichzeitig — egal wer lügt und wer die Wahrheit sagt.</div>
-            <div class="input-group">
-                <input type="text" id="input-8" placeholder="Deine Frage eingeben...">
-                <button onclick="checkAnswerDoor(8)">Prüfen</button>
-            </div>
-            <div id="door-feedback" style="display:none; margin-top:16px; padding:14px 18px; border-radius:8px; font-size:0.95rem;"></div>
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Die richtige Frage funktioniert bei beiden
+            Wächtern gleichzeitig — egal wer lügt und wer die Wahrheit sagt.
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="input-8"
+              placeholder="Deine Frage eingeben..."
+            />
+            <button onclick="checkAnswerDoor(8)">Prüfen</button>
+          </div>
+          <div
+            id="door-feedback"
+            style="
+              display: none;
+              margin-top: 16px;
+              padding: 14px 18px;
+              border-radius: 8px;
+              font-size: 0.95rem;
+            "
+          ></div>
         </div>
-
-        
-
         <div class="puzzle-card" id="card-network">
-    <div class="puzzle-header">
-        <span>Rätsel: Das Pyramiden-Netzwerk</span>
-        <span class="badge badge-hard">Schwer ⭐⭐⭐</span>
-    </div>
-    <p>Löse die drei vernetzten Pyramiden. Die Pfeile zeigen dir, welche Werte in andere Pyramiden übertragen werden!</p>
+          <div class="puzzle-header">
+            <span>Rätsel: Das Pyramiden-Netzwerk</span>
+            <span class="badge badge-hard">Schwer ⭐⭐⭐</span>
+          </div>
+          <p>
+            Löse die drei vernetzten Pyramiden. Die Pfeile zeigen dir, welche
+            Werte in andere Pyramiden übertragen werden!
+          </p>
 
-    <div class="network-container">
-        
-        <div class="pyramid-structure top-pyramid">
-            <div class="pyr-row"><input type="text" class="pyr-input" id="p1-r1-c1" placeholder="?"></div>
-            <div class="pyr-row">
+          <div
+            class="code-inputs-container"
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 15px;
+              margin-bottom: 20px;
+            "
+          >
+            <input
+              type="text"
+              id="code-orange"
+              placeholder="Orangener Wert"
+              maxlength="3"
+              style="
+                background: transparent;
+                border: 2px solid #ff9f43;
+                color: #ff9f43;
+                text-align: center;
+                font-weight: bold;
+                border-radius: 4px;
+                padding: 5px;
+                width: 120px;
+              "
+            />
+            <input
+              type="text"
+              id="code-purple"
+              placeholder="Violetter Wert"
+              maxlength="3"
+              style="
+                background: transparent;
+                border: 2px solid #a55eea;
+                color: #a55eea;
+                text-align: center;
+                font-weight: bold;
+                border-radius: 4px;
+                padding: 5px;
+                width: 120px;
+              "
+            />
+            <input
+              type="text"
+              id="code-green"
+              placeholder="Grüner Wert"
+              maxlength="3"
+              style="
+                background: transparent;
+                border: 2px solid #26de81;
+                color: #26de81;
+                text-align: center;
+                font-weight: bold;
+                border-radius: 4px;
+                padding: 5px;
+                width: 120px;
+              "
+            />
+          </div>
+
+          <div class="network-container">
+            <div class="pyramid-structure top-pyramid">
+              <div class="pyr-row">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p1-r1-c1"
+                  placeholder="?"
+                  style="
+                    background: transparent;
+                    border: 2px solid #a55eea;
+                    color: #a55eea;
+                  "
+                />
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">104</span>
                 <span class="pyr-block given">74</span>
-            </div>
-            <div class="pyr-row">
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">69</span>
                 <span class="pyr-block given">35</span>
-                <input type="text" class="pyr-input" id="p1-r3-c3" placeholder="?">
-            </div>
-            <div class="pyr-row">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p1-r3-c3"
+                  placeholder="?"
+                  style="
+                    background: transparent;
+                    border: 2px solid #54a0ff;
+                    color: #54a0ff;
+                  "
+                />
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">43</span>
-                <input type="text" class="pyr-input" id="p1-r4-c2" placeholder="?">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p1-r4-c2"
+                  placeholder="?"
+                  style="background: transparent"
+                />
                 <span class="pyr-block given">19</span>
-                <input type="text" class="pyr-input" id="p1-r4-c4" placeholder="?">
-            </div>
-            <div class="pyr-row">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p1-r4-c4"
+                  placeholder="?"
+                  style="background: transparent"
+                />
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">28</span>
-                <input type="text" class="pyr-input" id="p1-r5-c2" placeholder="?">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p1-r5-c2"
+                  placeholder="?"
+                  style="
+                    background: transparent;
+                    border: 2px solid #ff4d4d;
+                    color: #ff4d4d;
+                  "
+                />
                 <span class="pyr-block given">11</span>
                 <span class="pyr-block given">8</span>
                 <span class="pyr-block given">12</span>
+              </div>
             </div>
-        </div>
 
-        <div class="pyramid-structure left-pyramid">
-            <div class="pyr-row"><input type="text" class="pyr-input" id="p2-r1-c1" placeholder="?"></div>
-            <div class="pyr-row">
-                <input type="text" class="pyr-input" id="p2-r2-c1" placeholder="?">
+            <div class="pyramid-structure left-pyramid">
+              <div class="pyr-row">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p2-r1-c1"
+                  placeholder="?"
+                  style="
+                    background: transparent;
+                    border: 2px solid #ff9f43;
+                    color: #ff9f43;
+                  "
+                />
+              </div>
+              <div class="pyr-row">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p2-r2-c1"
+                  placeholder="?"
+                  style="background: transparent"
+                />
                 <span class="pyr-block given">42</span>
-            </div>
-            <div class="pyr-row">
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">52</span>
                 <span class="pyr-block given">27</span>
-                <input type="text" class="pyr-input" id="p2-r3-c3" placeholder="?">
-            </div>
-            <div class="pyr-row">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p2-r3-c3"
+                  placeholder="?"
+                  style="
+                    background: transparent;
+                    border: 2px solid #ff4d4d;
+                    color: #ff4d4d;
+                  "
+                />
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">32</span>
-                
-                <input type="text" class="pyr-input" id="p2-r4-c2" placeholder="?">
-                <input type="text" class="pyr-input" id="p2-r4-c3" placeholder="?">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p2-r4-c2"
+                  placeholder="?"
+                  style="background: transparent"
+                />
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p2-r4-c3"
+                  placeholder="?"
+                  style="background: transparent"
+                />
                 <span class="pyr-block given">8</span>
-            </div>
-            <div class="pyr-row">
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">12</span>
                 <span class="pyr-block given">20</span>
                 <span class="pyr-block given">0</span>
-                <input type="text" class="pyr-input" id="p2-r5-c4" placeholder="?">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p2-r5-c4"
+                  placeholder="?"
+                  style="
+                    background: transparent;
+                    border: 2px solid #006266;
+                    color: #006266;
+                  "
+                />
                 <span class="pyr-block given">1</span>
+              </div>
             </div>
-        </div>
 
-        <div class="pyramid-structure right-pyramid">
-            <div class="pyr-row"><input type="text" class="pyr-input" id="p3-r1-c1" placeholder="?"></div>
-            <div class="pyr-row">
-                <input type="text" class="pyr-input" id="p3-r2-c1" placeholder="?">
-                <input type="text" class="pyr-input" id="p3-r2-c2" placeholder="?">
-            </div>
-            <div class="pyr-row">
+            <div class="pyramid-structure right-pyramid">
+              <div class="pyr-row">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p3-r1-c1"
+                  placeholder="?"
+                  style="
+                    background: transparent;
+                    border: 2px solid #26de81;
+                    color: #26de81;
+                  "
+                />
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">19</span>
-                <input type="text" class="pyr-input" id="p3-r3-c2" placeholder="?">
-                <input type="text" class="pyr-input" id="p3-r3-c3" placeholder="?">
-            </div>
-            <div class="pyr-row">
-                <input type="text" class="pyr-input" id="p3-r4-c1" placeholder="?">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p3-r3-c2"
+                  placeholder="?"
+                  style="
+                    background: transparent;
+                    border: 2px solid #54a0ff;
+                    color: #54a0ff;
+                  "
+                />
+              </div>
+              <div class="pyr-row">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p3-r4-c1"
+                  placeholder="?"
+                  style="
+                    background: transparent;
+                    border: 2px solid #006266;
+                    color: #006266;
+                  "
+                />
                 <span class="pyr-block given">12</span>
                 <span class="pyr-block given">27</span>
-                <input type="text" class="pyr-input" id="p3-r4-c4" placeholder="?">
-            </div>
-            <div class="pyr-row">
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">4</span>
                 <span class="pyr-block given">3</span>
                 <span class="pyr-block given">9</span>
-                <input type="text" class="pyr-input" id="p3-r5-c4" placeholder="?">
-                <input type="text" class="pyr-input" id="p3-r5-c5" placeholder="?">
-            </div>
-            <div class="pyr-row">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p3-r5-c4"
+                  placeholder="?"
+                  style="background: transparent"
+                />
+              </div>
+              <div class="pyr-row">
                 <span class="pyr-block given">1</span>
                 <span class="pyr-block given">3</span>
-                <input type="text" class="pyr-input" id="p3-r6-c3" placeholder="?">
+                <input
+                  type="text"
+                  class="pyr-input"
+                  id="p3-r6-c3"
+                  placeholder="?"
+                  style="background: transparent"
+                />
                 <span class="pyr-block given">9</span>
                 <span class="pyr-block given">9</span>
-                <input type="text" class="pyr-input" id="p3-r6-c6" placeholder="?">
+              </div>
             </div>
-        </div>
+          </div>
 
-    </div>
-    
-    <div class="input-group">
-        <input type="text" id="input-network" placeholder="Trage den finalen Code der 3 oberen Farb-Striche ein...">
-        <button onclick="checkAnswer('network', 'DEIN_LOESUNGS_CODE')">Prüfen</button>
-    </div>
-</div>
+          <div
+            style="
+              margin-top: 30px;
+              display: flex;
+              justify-content: center;
+              width: 100%;
+            "
+          >
+            <button
+              id="button-network"
+              onclick="checkNetworkPuzzle()"
+              style="padding: 10px 30px; cursor: pointer; font-weight: bold"
+            >
+              Prüfen
+            </button>
+          </div>
+        </div>
 
         <!-- ===== NEU: RÄTSEL 12: BUCHSTABENCODE (BILD 2, AUFGABE 4) ===== -->
         <div class="puzzle-card" id="card-12">
-            <div class="puzzle-header">
-                <span>Rätsel 12: Der verschobene Buchstabencode</span>
-                <span class="badge badge-medium">Mittel ⭐⭐</span>
-            </div>
-            <p>Jedem Buchstaben wurde eine Zahl zugeordnet — aber nicht alphabetisch! Finde das Muster und löse den Code.</p>
+          <div class="puzzle-header">
+            <span>Rätsel 12: Der verschobene Buchstabencode</span>
+            <span class="badge badge-medium">Mittel ⭐⭐</span>
+          </div>
+          <p>
+            Jedem Buchstaben wurde eine Zahl zugeordnet — aber nicht
+            alphabetisch! Finde das Muster und löse den Code.
+          </p>
 
-            <div class="cipher-table">
-                <div class="cipher-row header-row">
-                    <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span>
-                </div>
-                <div class="cipher-row number-row">
-                    <span>14</span><span>4</span><span>15</span><span>0</span><span>24</span><span>12</span><span>6</span><span>17</span><span>7</span><span>19</span><span>1</span><span>9</span><span>11</span><span>16</span><span>3</span><span>17</span>
-                </div>
-                <div class="cipher-row header-row" style="margin-top:10px;">
-                    <span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span>
-                </div>
-                <div class="cipher-row number-row">
-                    <span>18</span><span>8</span><span>20</span><span>5</span><span>10</span><span>13</span><span>2</span><span>21</span><span>22</span><span>23</span>
-                </div>
+          <div class="cipher-table">
+            <div class="cipher-row header-row">
+              <span>A</span><span>B</span><span>C</span><span>D</span
+              ><span>E</span><span>F</span><span>G</span><span>H</span
+              ><span>I</span><span>J</span><span>K</span><span>L</span
+              ><span>M</span><span>N</span><span>O</span><span>P</span>
             </div>
-
-            <p style="margin-top:20px;">Sortiere die Buchstaben so, dass sie ein Wort ergeben! Die Zahlen geben die Reihenfolge an.</p>
-
-            <div class="tipp">💡 <strong>Tipp:</strong> Ordne alle Buchstaben nach ihrer Zahl (0, 1, 2, 3...) — der Buchstabe mit der kleinsten Zahl kommt zuerst.</div>
-            <div class="input-group">
-                <input type="text" id="input-12" placeholder="Das sortierte Wort...">
-                <button onclick="checkAnswer(12, 'dokumentationspflicht')">Prüfen</button>
+            <div class="cipher-row number-row">
+              <span>14</span><span>4</span><span>15</span><span>0</span
+              ><span>24</span><span>12</span><span>6</span><span>17</span
+              ><span>7</span><span>19</span><span>1</span><span>9</span
+              ><span>11</span><span>16</span><span>3</span><span>17</span>
             </div>
+            <div class="cipher-row header-row" style="margin-top: 10px">
+              <span>Q</span><span>R</span><span>S</span><span>T</span
+              ><span>U</span><span>V</span><span>W</span><span>X</span
+              ><span>Y</span><span>Z</span>
+            </div>
+            <div class="cipher-row number-row">
+              <span>18</span><span>8</span><span>20</span><span>5</span
+              ><span>10</span><span>13</span><span>2</span><span>21</span
+              ><span>22</span><span>23</span>
+            </div>
+          </div>
+
+          <p style="margin-top: 20px">
+            Sortiere die Buchstaben so, dass sie ein Wort ergeben! Die Zahlen
+            geben die Reihenfolge an.
+          </p>
+
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Ordne alle Buchstaben nach ihrer Zahl (0,
+            1, 2, 3...) — der Buchstabe mit der kleinsten Zahl kommt zuerst.
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="input-12"
+              placeholder="Das sortierte Wort..."
+            />
+            <button onclick="checkAnswer(12, 'dokumentationspflicht')">
+              Prüfen
+            </button>
+          </div>
         </div>
 
         <!-- ===== RÄTSEL 14: LOGIKRÄTSEL (PAPAGEI) ===== -->
         <div class="puzzle-card" id="card-14">
-            <div class="puzzle-header">
-                <span>Rätsel 14: Logikrätsel</span>
-                <span class="badge badge-medium">Mittel ⭐⭐</span>
-            </div>
-            <p>In einer Straße wohnen 5 Personen nebeneinander. Jede Person hat eine andere Lieblingsfarbe, ein anderes Hobby, ein anderes Lieblingstier und trinkt ein anderes Getränk.</p>
-            
-            <div class="hints-container">
-                <details>
-                    <summary>Klicke hier, um alle 15 Hinweise anzuzeigen</summary>
-                    <ol>
-                        <li>Die Person mit der roten Lieblingsfarbe wohnt ganz links.</li>
-                        <li>Die Person, die Schach spielt, trinkt Tee.</li>
-                        <li>Der Hund gehört der Person in der blauen Hütte.</li>
-                        <li>Die grüne Hütte steht direkt rechts von der gelben Hütte.</li>
-                        <li>In der mittleren Hütte wird Wasser getrunken.</li>
-                        <li>Die Person mit dem Kaninchen spielt Fußball.</li>
-                        <li>Die Person in der grünen Hütte trinkt Saft.</li>
-                        <li>Der Gamer wohnt neben der Person mit der Katze.</li>
-                        <li>Die Person in der gelben Hütte spielt Basketball.</li>
-                        <li>Die Person mit dem Pferd wohnt neben der Person, die Tee trinkt.</li>
-                        <li>Die blaue Hütte steht direkt neben der roten Hütte.</li>
-                        <li>Die Person mit dem Papagei wohnt nicht am Rand.</li>
-                        <li>Die Person, die Kaffee trinkt, wohnt rechts von der Person mit dem Hund.</li>
-                        <li>Die Person mit der lila Lieblingsfarbe spielt Videospiele.</li>
-                        <li>Die Person mit der Katze wohnt direkt links von der Person mit dem Papagei.</li>
-                    </ol>
-                </details>
-            </div>
+          <div class="puzzle-header">
+            <span>Rätsel 14: Logikrätsel</span>
+            <span class="badge badge-medium">Mittel ⭐⭐</span>
+          </div>
+          <p>
+            In einer Straße wohnen 5 Personen nebeneinander. Jede Person hat
+            eine andere Lieblingsfarbe, ein anderes Hobby, ein anderes
+            Lieblingstier und trinkt ein anderes Getränk.
+          </p>
 
-            <p><strong>Deine Antwort (Wer besitzt den Papagei?):</strong></p>
-            <div class="tipp">💡 <strong>Tipp:</strong> Die Lösung ist die Nummer des Hauses (von links nach rechts gezählt: 1, 2, 3, 4 oder 5).</div>
-            <div class="input-group">
-                <input type="text" id="input-14" placeholder="Welches Haus (Zahl) oder Farbe?">
-                <button onclick="checkAnswer(14, '4')">Prüfen</button>
-            </div>
+          <div class="hints-container">
+            <details>
+              <summary>Klicke hier, um alle 15 Hinweise anzuzeigen</summary>
+              <ol>
+                <li>
+                  Die Person mit der roten Lieblingsfarbe wohnt ganz links.
+                </li>
+                <li>Die Person, die Schach spielt, trinkt Tee.</li>
+                <li>Der Hund gehört der Person in der blauen Hütte.</li>
+                <li>
+                  Die grüne Hütte steht direkt rechts von der gelben Hütte.
+                </li>
+                <li>In der mittleren Hütte wird Wasser getrunken.</li>
+                <li>Die Person mit dem Kaninchen spielt Fußball.</li>
+                <li>Die Person in der grünen Hütte trinkt Saft.</li>
+                <li>Der Gamer wohnt neben der Person mit der Katze.</li>
+                <li>Die Person in der gelben Hütte spielt Basketball.</li>
+                <li>
+                  Die Person mit dem Pferd wohnt neben der Person, die Tee
+                  trinkt.
+                </li>
+                <li>Die blaue Hütte steht direkt neben der roten Hütte.</li>
+                <li>Die Person mit dem Papagei wohnt nicht am Rand.</li>
+                <li>
+                  Die Person, die Kaffee trinkt, wohnt rechts von der Person mit
+                  dem Hund.
+                </li>
+                <li>
+                  Die Person mit der lila Lieblingsfarbe spielt Videospiele.
+                </li>
+                <li>
+                  Die Person mit der Katze wohnt direkt links von der Person mit
+                  dem Papagei.
+                </li>
+              </ol>
+            </details>
+          </div>
+
+          <p><strong>Deine Antwort (Wer besitzt den Papagei?):</strong></p>
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Die Lösung ist die Nummer des Hauses (von
+            links nach rechts gezählt: 1, 2, 3, 4 oder 5).
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="input-14"
+              placeholder="Welches Haus (Zahl) oder Farbe?"
+            />
+            <button onclick="checkAnswer(14, '4')">Prüfen</button>
+          </div>
         </div>
+      </main>
+    </div>
 
-    </main>
-</div>
-
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
