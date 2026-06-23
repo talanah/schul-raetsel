@@ -1,223 +1,342 @@
 /**
- * Überprüft die Antwort eines Rätsels
+ * Überprüft die Antwort eines Standard-Rätsels
+ * Fehlertolerant gegen Leerzeichen & Groß-/Kleinschreibung
  * @param {number} id - Die ID des Rätsels
- * @param {string} correctAnswer - Die korrekte Lösung
+ * @param {string|string[]} correctAnswer - Die korrekte Lösung
  */
 function checkAnswer(id, correctAnswer) {
-    const inputField = document.getElementById(`input-${id}`);
-    const cardElement = document.getElementById(`card-${id}`);
+  const inputField = document.getElementById(`input-${id}`);
+  const cardElement = document.getElementById(`card-${id}`);
 
-    if (!inputField || !cardElement) return;
+  if (!inputField || !cardElement) return;
 
-    const buttonElement = inputField.nextElementSibling;
-    const tippElement = cardElement.querySelector('.tipp');
+  const buttonElement = inputField.nextElementSibling;
+  const tippElement = cardElement.querySelector(".tipp");
 
-    const userAnswer = inputField.value.trim().toLowerCase();
+  // .trim() entfernt Leerzeichen am Anfang & Ende, .replace(/\s+/g, ' ') macht aus doppelten Leerzeichen ein einzelnes
+  const userAnswer = inputField.value.trim().toLowerCase().replace(/\s+/g, " ");
 
-    const answers = Array.isArray(correctAnswer)
-        ? correctAnswer
-        : [correctAnswer];
+  const answers = Array.isArray(correctAnswer)
+    ? correctAnswer
+    : [correctAnswer];
 
-    const isCorrect = userAnswer !== "" && answers.some(ans =>
-        ans.trim().toLowerCase() === userAnswer
+  const isCorrect =
+    userAnswer !== "" &&
+    answers.some(
+      (ans) => ans.trim().toLowerCase().replace(/\s+/g, " ") === userAnswer,
     );
 
-    if (isCorrect) {
-        inputField.disabled = true;
-        cardElement.classList.add('solved');
+  if (isCorrect) {
+    inputField.disabled = true;
+    cardElement.classList.add("solved");
 
-        if (buttonElement) {
-            buttonElement.innerHTML = "✓";
-            buttonElement.disabled = true;
-        }
-
-        if (tippElement) {
-            tippElement.style.display = "none";
-        }
-
-        const solutionEl = document.getElementById(`solution-${id}`);
-        if (solutionEl) {
-            solutionEl.style.display = "block";
-        }
-
-    } else {
-        inputField.classList.add('shake-input');
-
-        if (tippElement) {
-            tippElement.style.display = "block";
-        }
-
-        setTimeout(() => {
-            inputField.classList.remove('shake-input');
-        }, 400);
+    if (buttonElement) {
+      buttonElement.innerHTML = "✓";
+      buttonElement.disabled = true;
     }
+
+    if (tippElement) {
+      tippElement.style.display = "none";
+    }
+
+    const solutionEl = document.getElementById(`solution-${id}`);
+    if (solutionEl) {
+      solutionEl.style.display = "block";
+    }
+  } else {
+    inputField.classList.add("shake-input");
+
+    if (tippElement) {
+      tippElement.style.display = "block";
+    }
+
+    setTimeout(() => {
+      inputField.classList.remove("shake-input");
+    }, 400);
+  }
 }
 
 /**
- * Türerrätsel: Akzeptiert mehrere sinngemäß korrekte Antworten
+ * Türerrätsel: Akzeptiert mehrere sinngemäß korrekte Antworten und verzeiht kleine Abweichungen
  * @param {number} id - Die ID des Rätsels
  */
 function checkAnswerDoor(id) {
-    const inputField = document.getElementById(`input-${id}`);
-    const cardElement = document.getElementById(`card-${id}`);
-    const feedbackEl = document.getElementById('door-feedback');
+  const inputField = document.getElementById(`input-${id}`);
+  const cardElement = document.getElementById(`card-${id}`);
+  const feedbackEl = document.getElementById("door-feedback");
 
-    if (!inputField || !cardElement) return;
+  if (!inputField || !cardElement) return;
 
-    const buttonElement = inputField.nextElementSibling;
-    const tippElement = cardElement.querySelector('.tipp');
-    const userAnswer = inputField.value.trim().toLowerCase();
+  const buttonElement = inputField.nextElementSibling;
+  const tippElement = cardElement.querySelector(".tipp");
 
-    // Schlüsselwörter, die auf die richtige Antwort hinweisen
-    const correctKeywords = [
-        'andere wächter', 'andere tür', 'andere wachter',
-        'würde der andere', 'wuerde der andere',
-        'beide wächter', 'beide wachter',
-        'welche tür würde', 'welche tur wurde',
-        'welche tür würde der andere',
-        'frage einen beliebigen',
-        'freiheit nennen',
-        'sicher bezeichnen',
-        'der andere wächter sagen',
-        'der andere wachter sagen'
-    ];
+  // Bereinigt alle unsauberen Leerzeichen im Text
+  const userAnswer = inputField.value.trim().toLowerCase().replace(/\s+/g, " ");
 
-    const isCorrect = userAnswer !== "" && correctKeywords.some(kw => userAnswer.includes(kw));
+  // Breiter aufgestellte Schlüsselwörter fangen Tippfehler und alternative Formulierungen ab
+  const correctKeywords = [
+    "andere wächter",
+    "andere tür",
+    "andere wachter",
+    "andere tur",
+    "würde der andere",
+    "wuerde der andere",
+    "wurde der andere",
+    "beide wächter",
+    "beide wachter",
+    "beide türen",
+    "welche tür",
+    "welche tur",
+    "frage einen beliebigen",
+    "frage ein wächter",
+    "freiheit nennen",
+    "freiheit zeigen",
+    "sicher bezeichnen",
+    "sichere tür",
+    "der andere wächter sagen",
+    "der andere wachter sagen",
+  ];
 
-    if (isCorrect) {
-        inputField.disabled = true;
-        cardElement.classList.add('solved');
-        
-        if (buttonElement) {
-            buttonElement.innerHTML = "✓";
-            buttonElement.disabled = true;
-        }
+  const isCorrect =
+    userAnswer !== "" && correctKeywords.some((kw) => userAnswer.includes(kw));
 
-        if (tippElement) tippElement.style.display = "none";
-        if (feedbackEl) feedbackEl.style.display = "none";
+  if (isCorrect) {
+    inputField.disabled = true;
+    cardElement.classList.add("solved");
 
-    } else if (userAnswer !== "") {
-        // Zeige Hinweis zur richtigen Frage
-        inputField.classList.add('shake-input');
-        
-        if (tippElement) tippElement.style.display = "block";
+    if (buttonElement) {
+      buttonElement.innerHTML = "✓";
+      buttonElement.disabled = true;
+    }
 
-        if (feedbackEl) {
-            feedbackEl.style.display = "block";
-            feedbackEl.style.background = "rgba(239,68,68,0.08)";
-            feedbackEl.style.border = "1px solid rgba(239,68,68,0.25)";
-            feedbackEl.style.color = "#fca5a5";
-            feedbackEl.innerHTML = `
+    if (tippElement) tippElement.style.display = "none";
+    if (feedbackEl) feedbackEl.style.display = "none";
+  } else if (userAnswer !== "") {
+    inputField.classList.add("shake-input");
+
+    if (tippElement) tippElement.style.display = "block";
+
+    if (feedbackEl) {
+      feedbackEl.style.display = "block";
+      feedbackEl.style.background = "rgba(239,68,68,0.08)";
+      feedbackEl.style.border = "1px solid rgba(239,68,68,0.25)";
+      feedbackEl.style.color = "#fca5a5";
+      feedbackEl.innerHTML = `
                 <strong>Nicht ganz!</strong> Die Lösung: Frage einen <em>beliebigen</em> Wächter: 
                 <em>„Welche Tür würde der andere Wächter als sicher bezeichnen?"</em> — 
                 und nimm dann die <strong>andere</strong> Tür. Das funktioniert bei beiden Wächtern!
             `;
-        }
-
-        setTimeout(() => {
-            inputField.classList.remove('shake-input');
-        }, 400);
     }
+
+    setTimeout(() => {
+      inputField.classList.remove("shake-input");
+    }, 400);
+  }
 }
 
 /**
- * Pyramiden-Netzwerk: Prüft alle mathematischen Zwischenschritte und die Farbcodes
+ * Pyramiden-Netzwerk: Extrahiert nur die reinen Ziffern (ignoriert Leerzeichen komplett)
  */
 function checkNetworkPuzzle() {
-    const cardElement = document.getElementById('card-network');
-    const buttonElement = document.getElementById('button-network');
-    const tippElement = cardElement ? cardElement.querySelector('.tipp') : null;
+  const cardElement = document.getElementById("card-network");
+  const buttonElement = document.getElementById("button-network");
+  const tippElement = cardElement ? cardElement.querySelector(".tipp") : null;
 
-    if (!cardElement) return;
+  if (!cardElement) return;
 
-    // Mathematisch korrekte Lösungen für jedes einzelne Feld
-    const solutions = {
-        // Top Pyramid (p1)
-        'p1-r1-c1': '178',
-        'p1-r3-c3': '39',
-        'p1-r4-c2': '26',
-        'p1-r4-c4': '20',
-        'p1-r5-c2': '15',
+  const solutions = {
+    "p1-r1-c1": "178",
+    "p1-r3-c3": "39",
+    "p1-r4-c2": "26",
+    "p1-r4-c4": "20",
+    "p1-r5-c2": "15",
+    "p2-r1-c1": "94",
+    "p2-r2-c1": "52",
+    "p2-r3-c3": "15",
+    "p2-r4-c2": "20",
+    "p2-r4-c3": "7",
+    "p2-r5-c4": "7",
+    "p3-r1-c1": "31",
+    "p3-r3-c2": "20",
+    "p3-r4-c1": "7",
+    "p3-r5-c4": "18",
+    "p3-r6-c3": "0",
+    "code-orange": "94",
+    "code-purple": "178",
+    "code-green": "31",
+  };
 
-        // Left Pyramid (p2)
-        'p2-r1-c1': '94',
-        'p2-r2-c1': '52',
-        'p2-r3-c3': '15',
-        'p2-r4-c2': '20',
-        'p2-r4-c3': '7',
-        'p2-r5-c4': '7',
+  let allCorrect = true;
+  let anyFieldIncorrect = false;
 
-        // Right Pyramid (p3)
-        'p3-r1-c1': '31',
-        'p3-r3-c2': '20',
-        'p3-r4-c1': '7',
-        'p3-r5-c4': '18',
-        'p3-r6-c3': '0',
+  for (const [id, val] of Object.entries(solutions)) {
+    const inputField = document.getElementById(id);
+    if (inputField) {
+      // .replace(/\D/g, '') filtert ALLES heraus, was keine Zahl ist (auch jegliche Leerzeichen!)
+      const userAnswer = inputField.value.replace(/\D/g, "");
 
-        // Finale Code-Felder oben
-        'code-orange': '94',
-        'code-purple': '178',
-        'code-green': '31'
-    };
+      if (userAnswer === val) {
+        inputField.classList.remove("shake-input");
+        inputField.style.borderColor = "var(--success)";
+      } else {
+        allCorrect = false;
+        if (inputField.value.trim() !== "") {
+          anyFieldIncorrect = true;
+          inputField.classList.add("shake-input");
+          inputField.style.borderColor = "var(--error)";
+        }
+      }
+    }
+  }
 
-    let allCorrect = true;
-    let anyFieldIncorrect = false;
+  if (allCorrect) {
+    cardElement.classList.add("solved");
+    if (buttonElement) {
+      buttonElement.innerHTML = "✓";
+      buttonElement.disabled = true;
+    }
+    if (tippElement) tippElement.style.display = "none";
 
-    // 1. Durchlauf: Validierung aller Felder
-    for (const [id, val] of Object.entries(solutions)) {
+    for (const id of Object.keys(solutions)) {
+      const inputField = document.getElementById(id);
+      if (inputField) inputField.disabled = true;
+    }
+
+    const solutionEl = document.getElementById("solution-network");
+    if (solutionEl) {
+      solutionEl.style.display = "block";
+    }
+  } else {
+    if (anyFieldIncorrect && tippElement) tippElement.style.display = "block";
+    setTimeout(() => {
+      for (const id of Object.keys(solutions)) {
         const inputField = document.getElementById(id);
         if (inputField) {
-            const userAnswer = inputField.value.trim();
-            
-            if (userAnswer === val) {
-                // Bei richtigem Wert bleibt das Feld sauber (oder du vergibst optional einen grünen Rand)
-                inputField.classList.remove('shake-input');
-            } else {
-                allCorrect = false;
-                // Shake-Animation triggern, falls das Feld nicht leer ist
-                if (userAnswer !== "") {
-                    anyFieldIncorrect = true;
-                    inputField.classList.add('shake-input');
-                }
-            }
+          inputField.classList.remove("shake-input");
+          if (inputField.value.trim() === "") inputField.style.borderColor = "";
         }
-    }
-
-    // 2. Zustand anpassen analog zu deinen bestehenden Rätseln
-    if (allCorrect) {
-        cardElement.classList.add('solved');
-        
-        if (buttonElement) {
-            buttonElement.innerHTML = "✓";
-            buttonElement.disabled = true;
-        }
-
-        if (tippElement) {
-            tippElement.style.display = "none";
-        }
-
-        // Alle Inputs einfrieren
-        for (const id of Object.keys(solutions)) {
-            const inputField = document.getElementById(id);
-            if (inputField) inputField.disabled = true;
-        }
-
-        const solutionEl = document.getElementById('solution-network');
-        if (solutionEl) {
-            solutionEl.style.display = "block";
-        }
-
-    } else {
-        // Falls Fehler vorlagen, die Shake-Klasse nach 400ms wie gewohnt entfernen
-        if (anyFieldIncorrect && tippElement) {
-            tippElement.style.display = "block";
-        }
-
-        setTimeout(() => {
-            for (const id of Object.keys(solutions)) {
-                const inputField = document.getElementById(id);
-                if (inputField) inputField.classList.remove('shake-input');
-            }
-        }, 400);
-    }
+      }
+    }, 400);
+  }
 }
+
+/**
+ * Überprüft das interaktive Trio der großen 5-stufigen Zahlenpyramiden (Komplett Leerzeichen-Resistent)
+ */
+function checkAllLargePyramids() {
+  const cardElement = document.getElementById("card-pyramids-multi");
+  const tippElement = cardElement ? cardElement.querySelector(".tipp") : null;
+  const solutionEl = document.getElementById("solution-pyramids-multi");
+  const buttonElement = cardElement
+    ? cardElement.querySelector(".input-group-centered button")
+    : null;
+
+  const exactSolutions = {
+    "p1-l5-1": "310",
+    "p1-l4-2": "202",
+    "p1-l3-1": "38",
+    "p1-l2-3": "52",
+    "p1-l1-2": "13",
+    "p1-l1-5": "33",
+    "p2-l5-1": "187",
+    "p2-l3-2": "21",
+    "p2-l2-1": "16",
+    "p2-l2-4": "30",
+    "p2-l1-2": "9",
+    "p3-l5-1": "91",
+    "p3-l4-1": "56",
+    "p3-l4-2": "35",
+    "p3-l2-1": "17",
+    "p3-l2-3": "8",
+    "p3-l2-4": "1",
+  };
+
+  let allCorrect = true;
+  let anyFieldIncorrect = false;
+
+  for (const [id, targetValue] of Object.entries(exactSolutions)) {
+    const inputField = document.getElementById(id);
+    if (!inputField) continue;
+
+    // Entfernt radikal alle eingegebenen Leerzeichen oder versehentliche Tippfehler-Buchstaben
+    const userAnswer = inputField.value.replace(/\D/g, "");
+
+    if (userAnswer === targetValue) {
+      inputField.style.borderColor = "var(--success)";
+      inputField.classList.remove("shake-input");
+    } else {
+      allCorrect = false;
+      if (inputField.value.trim() !== "") {
+        anyFieldIncorrect = true;
+        inputField.classList.add("shake-input");
+        inputField.style.borderColor = "var(--error)";
+      }
+    }
+  }
+
+  if (allCorrect) {
+    if (cardElement) cardElement.classList.add("solved");
+    if (buttonElement) {
+      buttonElement.innerHTML = "✓ Alle Pyramiden gelöst";
+      buttonElement.disabled = true;
+    }
+    if (tippElement) tippElement.style.display = "none";
+    if (solutionEl) solutionEl.style.display = "block";
+
+    for (const id of Object.keys(exactSolutions)) {
+      const inputField = document.getElementById(id);
+      if (inputField) {
+        inputField.disabled = true;
+        inputField.style.borderColor = "var(--success)";
+      }
+    }
+  } else {
+    if (anyFieldIncorrect && tippElement) tippElement.style.display = "block";
+    setTimeout(() => {
+      for (const id of Object.keys(exactSolutions)) {
+        const inputField = document.getElementById(id);
+        if (inputField) {
+          inputField.classList.remove("shake-input");
+          if (inputField.value.trim() === "") inputField.style.borderColor = "";
+        }
+      }
+    }, 400);
+  }
+}
+
+// Globaler Key-Handler für verzögerungsfreie Enter- und Handy-Absende-Aktionen
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    const activeElement = document.activeElement;
+
+    if (activeElement && activeElement.tagName === "INPUT") {
+      // 1. Großes Pyramiden-Trio (Aufgaben 1-3)
+      if (
+        activeElement.id.startsWith("p1-l") ||
+        activeElement.id.startsWith("p2-l") ||
+        activeElement.id.startsWith("p3-l")
+      ) {
+        event.preventDefault();
+        checkAllLargePyramids();
+      }
+      // 2. Vernetztes Pyramiden-Netzwerk
+      else if (
+        activeElement.id.startsWith("p1-r") ||
+        activeElement.id.startsWith("p2-r") ||
+        activeElement.id.startsWith("p3-r") ||
+        activeElement.id.startsWith("code-")
+      ) {
+        event.preventDefault();
+        checkNetworkPuzzle();
+      }
+      // 3. Jedes andere Text-/Zahlenfeld
+      else if (activeElement.id.startsWith("input-")) {
+        event.preventDefault();
+        const button = activeElement.nextElementSibling;
+        if (button && button.tagName === "BUTTON" && !button.disabled) {
+          button.click();
+        }
+      }
+    }
+  }
+});
