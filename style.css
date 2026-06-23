@@ -654,3 +654,71 @@ ol li {
     .cipher-row span { width: 26px; height: 26px; font-size: 0.72rem; }
     .matches-row { padding: 16px 20px; gap: 10px; }
 }
+
+.network-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    margin: 30px auto;
+}
+
+@media (min-width: 768px) {
+    .network-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        justify-items: center;
+    }
+    .top-pyramid {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+    }
+    .left-pyramid {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .right-pyramid {
+        grid-column: 2;
+        grid-row: 2;
+    }
+}
+
+.pyramid-structure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.pyr-block, .pyr-input {
+    width: 48px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: 700;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pyr-block.given {
+    background: #020617;
+    color: #f0c070;
+}
+
+.pyr-input {
+    background: rgba(56, 189, 248, 0.08);
+    color: var(--accent);
+    border-color: rgba(56, 189, 248, 0.3);
+    padding: 0;
+}
+
+.pyr-input:focus {
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, 0.15);
+}

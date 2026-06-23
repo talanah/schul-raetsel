@@ -6,43 +6,47 @@
 function checkAnswer(id, correctAnswer) {
     const inputField = document.getElementById(`input-${id}`);
     const cardElement = document.getElementById(`card-${id}`);
-    
+
     if (!inputField || !cardElement) return;
 
     const buttonElement = inputField.nextElementSibling;
     const tippElement = cardElement.querySelector('.tipp');
 
     const userAnswer = inputField.value.trim().toLowerCase();
-    const cleanCorrect = correctAnswer.trim().toLowerCase();
 
-    if (userAnswer === cleanCorrect && userAnswer !== "") {
-        // Erfolg
+    const answers = Array.isArray(correctAnswer)
+        ? correctAnswer
+        : [correctAnswer];
+
+    const isCorrect = userAnswer !== "" && answers.some(ans =>
+        ans.trim().toLowerCase() === userAnswer
+    );
+
+    if (isCorrect) {
         inputField.disabled = true;
         cardElement.classList.add('solved');
-        
+
         if (buttonElement) {
             buttonElement.innerHTML = "✓";
             buttonElement.disabled = true;
         }
-        
+
         if (tippElement) {
             tippElement.style.display = "none";
         }
 
-        // Streichholzrätsel: Lösung einblenden
         const solutionEl = document.getElementById(`solution-${id}`);
         if (solutionEl) {
             solutionEl.style.display = "block";
         }
 
     } else {
-        // Fehler: Schütteleffekt
         inputField.classList.add('shake-input');
-        
+
         if (tippElement) {
             tippElement.style.display = "block";
         }
-        
+
         setTimeout(() => {
             inputField.classList.remove('shake-input');
         }, 400);
