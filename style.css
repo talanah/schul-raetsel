@@ -22,9 +22,7 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg);
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.25) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.6) 0px, transparent 50%);
+    background-image: \n        radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.25) 0px, transparent 50%),\n        radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.6) 0px, transparent 50%);
     background-attachment: fixed;
     color: var(--text);
     line-height: 1.6;
@@ -356,11 +354,7 @@ ol li {
     margin-top: 35px;
 }
 
-/* =============================================
-   NEUE STYLES FÜR NEUE RÄTSEL
-   ============================================= */
-
-/* --- WER LÜGT? (RÄTSEL 6) --- */
+/* --- WER LÜGT? --- */
 .statement-grid {
     display: flex;
     flex-direction: column;
@@ -392,7 +386,7 @@ ol li {
     font-size: 0.98rem;
 }
 
-/* --- STREICHHOLZRÄTSEL (RÄTSEL 7) --- */
+/* --- STREICHHOLZRÄTSEL --- */
 .match-visual {
     display: flex;
     justify-content: center;
@@ -425,7 +419,7 @@ ol li {
     border-radius: 10px;
 }
 
-/* --- TÜRERRÄTSEL (RÄTSEL 8) --- */
+/* --- TÜRERRÄTSEL --- */
 .door-scenario {
     display: flex;
     align-items: center;
@@ -499,60 +493,80 @@ ol li {
     content: "👤 ";
 }
 
-/* --- ZAHLENPYRAMIDEN (RÄTSEL 9-11) --- */
-.pyramid-container {
+/* --- ZAHLENPYRAMIDEN GLOBAL BASIS --- */
+.pyramid-structure {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    margin: 24px 0;
+    gap: 4px;
 }
 
-.pyr-row {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-}
-
-.pyr-cell {
-    width: 54px;
-    height: 44px;
-    display: flex;
+/* BASIS-ELEMENTE FÜR PYRAMIDEN (WICHTIG: Spezifische Größen weiter unten!) */
+.pyr-block, .pyr-input {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 6px;
     font-weight: 700;
-    font-size: 0.95rem;
     font-family: 'Fira Code', monospace;
-    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
-.pyr-cell.given {
+.pyr-block.given {
     background: #020617;
     color: #f0c070;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.pyr-cell.unknown {
-    background: rgba(56, 189, 248, 0.12);
-    color: var(--accent);
-    border-color: var(--accent);
-    font-size: 1.2rem;
-    animation: pulse-border 2s ease-in-out infinite;
+/* --- 1. NETZWERK-PYRAMIDEN (RÄTSEL 12) CODES --- */
+.network-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    margin: 30px auto;
 }
 
-.pyr-cell.unknown-small {
-    background: rgba(249, 115, 22, 0.08);
-    color: #f97316;
-    border-color: rgba(249, 115, 22, 0.3);
+@media (min-width: 768px) {
+    .network-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        justify-items: center;
+    }
+    .top-pyramid { grid-column: 1 / span 2; grid-row: 1; }
+    .left-pyramid { grid-column: 1; grid-row: 2; }
+    .right-pyramid { grid-column: 2; grid-row: 2; }
+}
+
+/* Spezifische Dimensionen für das obere Netzwerk-Puzzle */
+.network-container .pyr-block, 
+.network-container .pyr-input {
+    width: 48px;
+    height: 38px;
     font-size: 0.9rem;
 }
 
-@keyframes pulse-border {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
-    50% { box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15); }
+.network-container .pyr-input {
+    background: rgba(56, 189, 248, 0.08);
+    color: var(--accent);
+    border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-/* --- BUCHSTABENCODE TABELLE (RÄTSEL 12) --- */
+.network-container .pyr-input:focus {
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, 0.15);
+}
+
+/* --- BUCHSTABENCODE TABELLE --- */
 .cipher-table {
     background: #020617;
     border: 1px solid rgba(255,255,255,0.08);
@@ -595,135 +609,7 @@ ol li {
     border: 1px solid rgba(240, 192, 112, 0.12);
 }
 
-/* --- ZAHLENPYRAMIDE 9 (asymmetrisches Grid) --- */
-.pyr9-grid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(5, 44px);
-    gap: 5px;
-    margin: 24px auto;
-    max-width: 420px;
-}
-
-.pyr9-cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    font-family: 'Fira Code', monospace;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.pyr9-cell.given {
-    background: #020617;
-    color: #f0c070;
-}
-
-.pyr9-cell.unknown {
-    background: rgba(56, 189, 248, 0.12);
-    color: var(--accent);
-    border-color: var(--accent);
-    font-size: 1.2rem;
-    animation: pulse-border 2s ease-in-out infinite;
-}
-
-.pyr9-cell.unknown-small {
-    background: rgba(249, 115, 22, 0.08);
-    color: #f97316;
-    border-color: rgba(249, 115, 22, 0.3);
-}
-
-.pyr9-cell.empty {
-    background: transparent;
-    border: none;
-}
-
-/* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 600px) {
-    body { padding: 20px 10px; }
-    .puzzle-card { padding: 20px; }
-    .input-group { flex-direction: column; gap: 12px; }
-    button { width: 100%; }
-    .chessboard { width: 280px; height: 280px; }
-    .cell { font-size: 22px; }
-    .hints-container, .matrix-container { padding: 0 5px; margin-bottom: 30px; }
-    .door-scenario { flex-direction: column; }
-    .pyr-cell { width: 44px; height: 38px; font-size: 0.8rem; }
-    .cipher-row span { width: 26px; height: 26px; font-size: 0.72rem; }
-    .matches-row { padding: 16px 20px; gap: 10px; }
-}
-
-.network-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    position: relative;
-    margin: 30px auto;
-}
-
-@media (min-width: 768px) {
-    .network-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-        justify-items: center;
-    }
-    .top-pyramid {
-        grid-column: 1 / span 2;
-        grid-row: 1;
-    }
-    .left-pyramid {
-        grid-column: 1;
-        grid-row: 2;
-    }
-    .right-pyramid {
-        grid-column: 2;
-        grid-row: 2;
-    }
-}
-
-.pyramid-structure {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.pyr-block, .pyr-input {
-    width: 48px;
-    height: 38px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    font-weight: 700;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.9rem;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.pyr-block.given {
-    background: #020617;
-    color: #f0c070;
-}
-
-.pyr-input {
-    background: rgba(56, 189, 248, 0.08);
-    color: var(--accent);
-    border-color: rgba(56, 189, 248, 0.3);
-    padding: 0;
-}
-
-.pyr-input:focus {
-    border-color: var(--accent);
-    background: rgba(56, 189, 248, 0.15);
-}
-
-/* --- STYLES FÜR RÄTSEL 11 (Zahlenmatrix) --- */
+/* --- ZAHLENMATRIX --- */
 .matrix-scroll-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -736,7 +622,7 @@ ol li {
     grid-template-columns: repeat(10, 40px);
     gap: 6px;
     justify-content: center;
-    min-width: 440px; /* Verhindert das Quetschen auf kleinen Bildschirmen */
+    min-width: 440px;
 }
 
 .puzzle-matrix div {
@@ -754,19 +640,13 @@ ol li {
     transition: all 0.2s;
 }
 
-/* Subtiler Hover-Effekt für Entdecker */
 .puzzle-matrix div:hover {
     border-color: var(--accent);
     color: #fff;
     background: rgba(56, 189, 248, 0.05);
 }
 
-/* Falls du die Lösung beim Testen im Code nicht suchen willst (optional entfernen) */
-.puzzle-matrix div.highlight-hint {
-    border-color: rgba(56, 189, 248, 0.2);
-}
-
-/* --- STYLES FÜR DAS GROSSE PYRAMIDEN-TRIO --- */
+/* --- 2. DAS GROSSE PYRAMIDEN-TRIO --- */
 .pyramids-multi-container {
     display: flex;
     flex-direction: column;
@@ -814,67 +694,56 @@ ol li {
     justify-content: center;
 }
 
-/* Identische Dimensionen für Textblöcke und Eingabefelder */
-.pyr-block, .pyr-input {
+/* Spezifische Dimensionen für das große Dreier-Pyramiden-Trio */
+.large-pyramid-box .pyr-block {
     width: 44px;
     height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     font-size: 0.85rem;
-    font-family: 'Fira Code', monospace;
-    font-weight: 600;
-    border-radius: 6px;
-    text-align: center;
-}
-
-.pyr-block {
     background: #1e293b;
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text);
 }
 
-.pyr-input {
+.large-pyramid-box .pyr-input {
+    width: 44px;
+    height: 36px;
+    font-size: 0.85rem;
     background: rgba(2, 6, 23, 0.8);
     border: 1px solid rgba(56, 189, 248, 0.3);
     color: #fff;
     transition: all 0.2s ease;
 }
 
-.pyr-input:focus {
+.large-pyramid-box .pyr-input:focus {
     border-color: var(--accent);
     box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
 }
 
-.pyr-input::placeholder {
+.large-pyramid-box .pyr-input::placeholder {
     color: rgba(255, 255, 255, 0.2);
 }
 
-/* Ausblenden der Webkit-Standardpfeile für Nummernfelder */
-.pyr-input::-webkit-outer-spin-button,
-.pyr-input::-webkit-inner-spin-button {
+/* Chrome/Safari Pfeile entfernen */
+.large-pyramid-box .pyr-input::-webkit-outer-spin-button,
+.large-pyramid-box .pyr-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-.pyr-input {
-    -moz-appearance: textfield;
+.large-pyramid-box .pyr-input {
+    appearance: textfield;
 }
 
-/* Verhindert das Abschneiden der Fragezeichen und Zahlen in den Eingabefeldern */
-.pyr-input {
-    padding: 0 !important;         /* Entfernt störende Innenabstände des Browsers */
-    text-align: center !important; /* Zentriert das Fragezeichen horizontal */
-    line-height: 1 !important;     /* Verhindert vertikales Verschieben des Textes */
-    display: inline-flex !important;
-    align-items: center !important;    /* Zentriert den Text perfekt vertikal */
-    justify-content: center !important; /* Zentriert den Text perfekt horizontal */
-    box-sizing: border-box !important;
-}
-
-/* Verhindert, dass Webkit-Browser (Safari/Chrome) extra Ränder oder Schatten hinzufügen */
-.pyr-input:focus, .pyr-input {
-    outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 600px) {
+    body { padding: 20px 10px; }
+    .puzzle-card { padding: 20px; }
+    .input-group { flex-direction: column; gap: 12px; }
+    button { width: 100%; }
+    .chessboard { width: 280px; height: 280px; }
+    .cell { font-size: 22px; }
+    .hints-container, .matrix-container { padding: 0 5px; margin-bottom: 30px; }
+    .door-scenario { flex-direction: column; }
+    .network-container .pyr-block, .network-container .pyr-input { width: 44px; height: 38px; font-size: 0.8rem; }
+    .cipher-row span { width: 26px; height: 26px; font-size: 0.72rem; }
+    .matches-row { padding: 16px 20px; gap: 10px; }
 }
