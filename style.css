@@ -1,751 +1,824 @@
 /* --- DESIGN-VARIABLEN (CYBER BLUE MYSTERY) --- */
 :root {
-    --bg: #020617;           
-    --card-bg: #0f172a;      
-    --accent: #38bdf8;       
-    --primary: #2563eb;      
-    --success: #10b981;
-    --error: #ef4444;      
-    --text: #f8fafc;         
-    --text-muted: #94a3b8;
+  --bg: #020617;
+  --card-bg: #0f172a;
+  --accent: #38bdf8;
+  --primary: #2563eb;
+  --success: #10b981;
+  --error: #ef4444;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
 }
 
 /* --- GLOBAL RESET --- */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg);
-    background-image: \n        radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.25) 0px, transparent 50%),\n        radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.6) 0px, transparent 50%);
-    background-attachment: fixed;
-    color: var(--text);
-    line-height: 1.6;
-    padding: 40px 20px;
-    -webkit-font-smoothing: antialiased;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg);
+  background-image:
+    \nradial-gradient(at 0% 0%, rgba(30, 64, 175, 0.25) 0px, transparent 50%),
+    \nradial-gradient(at 100% 100%, rgba(15, 23, 42, 0.6) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text);
+  line-height: 1.6;
+  padding: 40px 20px;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* --- CONTAINER --- */
 .container {
-    max-width: 850px;
-    margin: 0 auto;
-    width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* --- HEADER --- */
 header {
-    text-align: center;
-    padding: 20px 20px 40px;
-    background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    margin-bottom: 40px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  padding: 20px 20px 40px;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 40px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 h1 {
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #fff;
-    text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-    margin-bottom: 10px;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  margin-bottom: 10px;
 }
 
 .subtitle {
-    color: var(--text-muted);
-    font-size: 1.1rem;
+  color: var(--text-muted);
+  font-size: 1.1rem;
 }
 
 /* --- PUZZLE CARDS --- */
 .puzzle-card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    padding: 30px;
-    margin-bottom: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s;
 }
 
 .puzzle-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(56, 189, 248, 0.25);
-    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.05);
-    background: #111827;
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.25);
+  box-shadow: 0 15px 35px rgba(56, 189, 248, 0.05);
+  background: #111827;
 }
 
 .puzzle-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--accent);
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 /* --- BADGES --- */
 .badge {
-    background: rgba(56, 189, 248, 0.1);
-    color: var(--accent);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    white-space: nowrap;
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  white-space: nowrap;
 }
 
 .badge-medium {
-    background: rgba(249, 115, 22, 0.1);
-    color: #f97316;
-    border-color: rgba(249, 115, 22, 0.2);
+  background: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+  border-color: rgba(249, 115, 22, 0.2);
 }
 
 .badge-hard {
-    background: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
-    border-color: rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.2);
 }
 
 /* --- TEXT FORMATTING & BOXES --- */
 p strong {
-    color: #fff;
-    font-weight: 600;
+  color: #fff;
+  font-weight: 600;
 }
 
 .puzzle-card p {
-    margin-bottom: 15px;
-    color: #e2e8f0;
+  margin-bottom: 15px;
+  color: #e2e8f0;
 }
 
 .sequence-box {
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-    text-align: center;
-    background: #020617;
-    padding: 16px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: #fff;
-    font-weight: 600;
-    margin: 20px 0;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  text-align: center;
+  background: #020617;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-weight: 600;
+  margin: 20px 0;
 }
 
 .sequence-box strong {
-    color: var(--accent);
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }
 
 .text-code {
-    font-family: 'Fira Code', monospace;
-    letter-spacing: 8px;
+  font-family: "Fira Code", monospace;
+  letter-spacing: 8px;
 }
 
 blockquote {
-    font-style: italic;
-    background: #020617;
-    padding: 20px;
-    border-left: 4px solid var(--accent);
-    border-radius: 0 10px 10px 0;
-    margin: 20px 0;
-    color: #e2e8f0;
-    line-height: 1.7;
+  font-style: italic;
+  background: #020617;
+  padding: 20px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  margin: 20px 0;
+  color: #e2e8f0;
+  line-height: 1.7;
 }
 
 .code-display {
-    font-family: 'Fira Code', monospace;
-    word-break: break-all;
-    background: #020617;
-    color: #e2e8f0;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    letter-spacing: 1px;
-    margin: 20px 0;
-    font-size: 0.95rem;
+  font-family: "Fira Code", monospace;
+  word-break: break-all;
+  background: #020617;
+  color: #e2e8f0;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  letter-spacing: 1px;
+  margin: 20px 0;
+  font-size: 0.95rem;
 }
 
 .tipp {
-    display: none; 
-    background: rgba(56, 189, 248, 0.05);
-    border-left: 3px solid var(--accent);
-    padding: 15px 18px;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    font-size: 0.95rem;
-    color: var(--accent);
-    border-radius: 0 8px 8px 0;
-    line-height: 1.5;
+  display: none;
+  background: rgba(56, 189, 248, 0.05);
+  border-left: 3px solid var(--accent);
+  padding: 15px 18px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: var(--accent);
+  border-radius: 0 8px 8px 0;
+  line-height: 1.5;
 }
 
 /* --- INPUT ROWS & BUTTONS --- */
 .input-group {
-    margin-top: 25px;
-    display: flex;
-    gap: 12px;
-    width: 100%;
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+  width: 100%;
 }
 
 input[type="text"] {
-    flex: 1;
-    min-width: 0;
-    background: #020617;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 14px 18px;
-    color: #fff;
-    font-size: 1.05rem;
-    font-family: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s;
+  flex: 1;
+  min-width: 0;
+  background: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 14px 18px;
+  color: #fff;
+  font-size: 1.05rem;
+  font-family: inherit;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 input[type="text"]:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
 }
 
 input[type="text"]::placeholder {
-    color: #475569;
+  color: #475569;
 }
 
 button {
-    flex: none;
-    background: rgba(56, 189, 248, 0.08);
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 0 24px;
-    height: 52px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 800;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
+  flex: none;
+  background: rgba(56, 189, 248, 0.08);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0 24px;
+  height: 52px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-    background: var(--accent);
-    color: #020617;
-    transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+  background: var(--accent);
+  color: #020617;
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
 
 /* --- STATUS-STYLES --- */
 .puzzle-card.solved {
-    border-color: var(--success);
-    background: rgba(16, 185, 129, 0.02);
+  border-color: var(--success);
+  background: rgba(16, 185, 129, 0.02);
 }
 
 .puzzle-card.solved button {
-    background: var(--success);
-    border-color: var(--success);
-    color: #fff;
-    box-shadow: none;
-    cursor: default;
-    transform: none;
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+  box-shadow: none;
+  cursor: default;
+  transform: none;
 }
 
 .shake-input {
-    animation: shake 0.4s ease-in-out;
-    border-color: var(--error) !important;
-    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
+  animation: shake 0.4s ease-in-out;
+  border-color: var(--error) !important;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-6px); }
-    75% { transform: translateX(6px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
 }
 
 /* --- IMAGES & CHESSBOARD --- */
 .puzzle-image {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 20px auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 20px auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .chessboard-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
 }
 
 .chessboard {
-    width: 340px;
-    height: 340px;
-    border: 6px solid #1e293b;
-    border-radius: 8px;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    overflow: hidden;
+  width: 340px;
+  height: 340px;
+  border: 6px solid #1e293b;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
 .cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 26px;
-    user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  user-select: none;
 }
 
-.white-cell { background-color: #e2e8f0; }
-.black-cell { background-color: #475569; }
-.piece.black { color: #0f172a; filter: drop-shadow(0px 1px 1px rgba(255,255,255,0.2)); }
-.piece.white { color: #ffffff; filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.8)); }
+.white-cell {
+  background-color: #e2e8f0;
+}
+.black-cell {
+  background-color: #475569;
+}
+.piece.black {
+  color: #0f172a;
+  filter: drop-shadow(0px 1px 1px rgba(255, 255, 255, 0.2));
+}
+.piece.white {
+  color: #ffffff;
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.8));
+}
 
 /* --- LOGIKRÄTSEL --- */
 .hints-container {
-    padding: 0 25px; 
-    margin-top: 20px;
-    margin-bottom: 45px;
+  padding: 0 25px;
+  margin-top: 20px;
+  margin-bottom: 45px;
 }
 
 details {
-    background: #020617;
-    padding: 16px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.08);
-    cursor: pointer;
+  background: #020617;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
 }
 
 details[open] {
-    border-color: rgba(56, 189, 248, 0.3);
+  border-color: rgba(56, 189, 248, 0.3);
 }
 
 summary {
-    font-weight: 600;
-    color: #fff;
-    user-select: none;
+  font-weight: 600;
+  color: #fff;
+  user-select: none;
 }
 
 ol {
-    font-size: 0.95rem;
-    padding-left: 20px;
-    margin-top: 15px;
-    color: #cbd5e1;
+  font-size: 0.95rem;
+  padding-left: 20px;
+  margin-top: 15px;
+  color: #cbd5e1;
 }
 
 ol li {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .matrix-container {
-    padding: 0 25px;
-    margin-top: 35px;
+  padding: 0 25px;
+  margin-top: 35px;
 }
 
 /* --- WER LÜGT? --- */
 .statement-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
 }
 
 .statement-item {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: #020617;
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 10px;
-    padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 14px 18px;
 }
 
 .statement-name {
-    font-weight: 800;
-    font-size: 1rem;
-    color: var(--accent);
-    min-width: 52px;
-    letter-spacing: 0.5px;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--accent);
+  min-width: 52px;
+  letter-spacing: 0.5px;
 }
 
 .statement-text {
-    color: #e2e8f0;
-    font-style: italic;
-    font-size: 0.98rem;
+  color: #e2e8f0;
+  font-style: italic;
+  font-size: 0.98rem;
 }
 
 /* --- STREICHHOLZRÄTSEL --- */
 .match-visual {
-    display: flex;
-    justify-content: center;
-    margin: 24px 0;
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
 }
 
 .matches-row {
-    display: flex;
-    gap: 14px;
-    align-items: flex-end;
-    background: rgba(249,115,22,0.05);
-    border: 1px solid rgba(249,115,22,0.15);
-    border-radius: 12px;
-    padding: 20px 30px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  background: rgba(249, 115, 22, 0.05);
+  border: 1px solid rgba(249, 115, 22, 0.15);
+  border-radius: 12px;
+  padding: 20px 30px;
 }
 
 .match {
-    width: 8px;
-    height: 64px;
-    background: linear-gradient(to bottom, #ef4444 0%, #ef4444 16%, #c2a26b 16%, #c2a26b 100%);
-    border-radius: 4px 4px 2px 2px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  width: 8px;
+  height: 64px;
+  background: linear-gradient(
+    to bottom,
+    #ef4444 0%,
+    #ef4444 16%,
+    #c2a26b 16%,
+    #c2a26b 100%
+  );
+  border-radius: 4px 4px 2px 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .solution-reveal {
-    margin-top: 20px;
-    padding: 18px;
-    background: rgba(56, 189, 248, 0.04);
-    border: 1px solid rgba(56, 189, 248, 0.15);
-    border-radius: 10px;
+  margin-top: 20px;
+  padding: 18px;
+  background: rgba(56, 189, 248, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 10px;
 }
 
 /* --- TÜRERRÄTSEL --- */
 .door-scenario {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 24px 0;
 }
 
 .door-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    background: #020617;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 20px 28px;
-    min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px 28px;
+  min-width: 100px;
 }
 
 .door-icon {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 .door-label {
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
 }
 
 .door-label.good {
-    background: rgba(16, 185, 129, 0.15);
-    color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .door-label.bad {
-    background: rgba(239, 68, 68, 0.15);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .door-middle-text {
-    font-weight: 800;
-    color: var(--text-muted);
-    font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  font-size: 1.1rem;
 }
 
 .guard-list {
-    list-style: none;
-    padding: 0;
-    margin: 12px 0 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .guard-list li {
-    padding: 10px 16px;
-    background: #020617;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.06);
-    color: #e2e8f0;
-    font-size: 0.95rem;
+  padding: 10px 16px;
+  background: #020617;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #e2e8f0;
+  font-size: 0.95rem;
 }
 
 .guard-list li::before {
-    content: "👤 ";
+  content: "👤 ";
 }
 
 /* --- ZAHLENPYRAMIDEN GLOBAL BASIS --- */
 .pyramid-structure {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 /* BASIS-ELEMENTE FÜR PYRAMIDEN (WICHTIG: Spezifische Größen weiter unten!) */
-.pyr-block, .pyr-input {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    font-weight: 700;
-    font-family: 'Fira Code', monospace;
-    text-align: center;
-    box-sizing: border-box !important;
-    line-height: 1 !important;
-    padding: 0 !important;
-    outline: none;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+.pyr-block,
+.pyr-input {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 700;
+  font-family: "Fira Code", monospace;
+  text-align: center;
+  box-sizing: border-box !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .pyr-block.given {
-    background: #020617;
-    color: #f0c070;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #020617;
+  color: #f0c070;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* --- 1. NETZWERK-PYRAMIDEN (RÄTSEL 12) CODES --- */
 .network-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    position: relative;
-    margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  margin: 30px auto;
 }
 
 @media (min-width: 768px) {
-    .network-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-        justify-items: center;
-    }
-    .top-pyramid { grid-column: 1 / span 2; grid-row: 1; }
-    .left-pyramid { grid-column: 1; grid-row: 2; }
-    .right-pyramid { grid-column: 2; grid-row: 2; }
+  .network-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    justify-items: center;
+  }
+  .top-pyramid {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+  .left-pyramid {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .right-pyramid {
+    grid-column: 2;
+    grid-row: 2;
+  }
 }
 
 /* Spezifische Dimensionen für das obere Netzwerk-Puzzle */
-.network-container .pyr-block, 
+.network-container .pyr-block,
 .network-container .pyr-input {
-    width: 48px;
-    height: 38px;
-    font-size: 0.9rem;
+  width: 48px;
+  height: 38px;
+  font-size: 0.9rem;
 }
 
 .network-container .pyr-input {
-    background: rgba(56, 189, 248, 0.08);
-    color: var(--accent);
-    border: 1px solid rgba(56, 189, 248, 0.3);
+  background: rgba(56, 189, 248, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
 .network-container .pyr-input:focus {
-    border-color: var(--accent);
-    background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent);
+  background: rgba(56, 189, 248, 0.15);
 }
 
 /* --- BUCHSTABENCODE TABELLE --- */
 .cipher-table {
-    background: #020617;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    padding: 16px;
-    margin: 20px 0;
-    overflow-x: auto;
+  background: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 20px 0;
+  overflow-x: auto;
 }
 
 .cipher-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
 }
 
 .cipher-row span {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-family: 'Fira Code', monospace;
-    text-align: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-family: "Fira Code", monospace;
+  text-align: center;
 }
 
 .cipher-row.header-row span {
-    color: var(--accent);
-    font-weight: 700;
-    background: rgba(56, 189, 248, 0.08);
-    border: 1px solid rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  font-weight: 700;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.15);
 }
 
 .cipher-row.number-row span {
-    color: #f0c070;
-    font-weight: 600;
-    background: rgba(240, 192, 112, 0.06);
-    border: 1px solid rgba(240, 192, 112, 0.12);
+  color: #f0c070;
+  font-weight: 600;
+  background: rgba(240, 192, 112, 0.06);
+  border: 1px solid rgba(240, 192, 112, 0.12);
 }
 
 /* --- ZAHLENMATRIX --- */
 .matrix-scroll-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    margin: 20px 0;
-    padding-bottom: 5px;
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+  padding-bottom: 5px;
 }
 
 .puzzle-matrix {
-    display: grid;
-    grid-template-columns: repeat(10, 40px);
-    gap: 6px;
-    justify-content: center;
-    min-width: 440px;
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  gap: 6px;
+  justify-content: center;
+  min-width: 440px;
 }
 
 .puzzle-matrix div {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #020617;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 6px;
-    font-family: 'Fira Code', monospace;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #cbd5e1;
-    transition: all 0.2s;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  font-family: "Fira Code", monospace;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  transition: all 0.2s;
 }
 
 .puzzle-matrix div:hover {
-    border-color: var(--accent);
-    color: #fff;
-    background: rgba(56, 189, 248, 0.05);
+  border-color: var(--accent);
+  color: #fff;
+  background: rgba(56, 189, 248, 0.05);
 }
 
 /* --- 2. DAS GROSSE PYRAMIDEN-TRIO --- */
 .pyramids-multi-container {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    margin: 30px 0;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 30px 0;
+  width: 100%;
 }
 
 @media (min-width: 1024px) {
-    .pyramids-multi-container {
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 20px;
-    }
+  .pyramids-multi-container {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+  }
 }
 
 .large-pyramid-box {
-    flex: 1;
-    background: rgba(15, 23, 42, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 20px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex: 1;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .large-pyramid-box h3 {
-    font-size: 1.1rem;
-    color: var(--accent);
-    margin-bottom: 20px;
-    font-family: 'Fira Code', monospace;
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+  font-family: "Fira Code", monospace;
 }
 
 .pyramid-5-layers {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
 }
 
 .pyr-layer {
-    display: flex;
-    gap: 4px;
-    justify-content: center;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
 }
 
 /* Spezifische Dimensionen für das große Dreier-Pyramiden-Trio */
 .large-pyramid-box .pyr-block {
-    width: 44px;
-    height: 36px;
-    font-size: 0.85rem;
-    background: #1e293b;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text);
+  width: 44px;
+  height: 36px;
+  font-size: 0.85rem;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text);
 }
 
 .large-pyramid-box .pyr-input {
-    width: 44px;
-    height: 36px;
-    font-size: 0.85rem;
-    background: rgba(2, 6, 23, 0.8);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    color: #fff;
-    transition: all 0.2s ease;
+  width: 44px;
+  height: 36px;
+  font-size: 0.85rem;
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #fff;
+  transition: all 0.2s ease;
 }
 
 .large-pyramid-box .pyr-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
 }
 
 .large-pyramid-box .pyr-input::placeholder {
-    color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.2);
 }
 
 /* Chrome/Safari Pfeile entfernen */
 .large-pyramid-box .pyr-input::-webkit-outer-spin-button,
 .large-pyramid-box .pyr-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 .large-pyramid-box .pyr-input {
-    appearance: textfield;
+  appearance: textfield;
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 600px) {
-    body { padding: 20px 10px; }
-    .puzzle-card { padding: 20px; }
-    .input-group { flex-direction: column; gap: 12px; }
-    button { width: 100%; }
-    .chessboard { width: 280px; height: 280px; }
-    .cell { font-size: 22px; }
-    .hints-container, .matrix-container { padding: 0 5px; margin-bottom: 30px; }
-    .door-scenario { flex-direction: column; }
-    .network-container .pyr-block, .network-container .pyr-input { width: 44px; height: 38px; font-size: 0.8rem; }
-    .cipher-row span { width: 26px; height: 26px; font-size: 0.72rem; }
-    .matches-row { padding: 16px 20px; gap: 10px; }
+  body {
+    padding: 20px 10px;
+  }
+  .puzzle-card {
+    padding: 20px;
+  }
+  .input-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+  button {
+    width: 100%;
+  }
+  .chessboard {
+    width: 280px;
+    height: 280px;
+  }
+  .cell {
+    font-size: 22px;
+  }
+  .hints-container,
+  .matrix-container {
+    padding: 0 5px;
+    margin-bottom: 30px;
+  }
+  .door-scenario {
+    flex-direction: column;
+  }
+  .network-container .pyr-block,
+  .network-container .pyr-input {
+    width: 44px;
+    height: 38px;
+    font-size: 0.8rem;
+  }
+  .cipher-row span {
+    width: 26px;
+    height: 26px;
+    font-size: 0.72rem;
+  }
+  .matches-row {
+    padding: 16px 20px;
+    gap: 10px;
+  }
 }
 
 /* Verhindert, dass der Browser gesperrte Felder in der gelösten Karte ausgraut */
@@ -778,7 +851,7 @@ ol li {
 }
 
 .caesar-cipher {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 2rem;
   font-weight: bold;
   color: #ffffff;
@@ -815,7 +888,9 @@ ol li {
   font-size: 1.8rem;
   font-weight: bold;
   color: #e74c3c;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 4px 6px rgba(0,0,0,0.3);
+  box-shadow:
+    inset 0 0 8px rgba(0, 0, 0, 0.8),
+    0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Die Hinweise-Liste */
@@ -848,7 +923,7 @@ ol li {
   border-radius: 6px;
   margin-right: 15px;
   letter-spacing: 2px;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: inline-block;
   min-width: 65px;
   text-align: center;

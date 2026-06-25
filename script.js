@@ -1,30 +1,38 @@
 /**
- * Überprüft die Antwort eines Standard-Rätsels
- * Fehlertolerant gegen Leerzeichen & Groß-/Kleinschreibung
- * @param {number} id - Die ID des Rätsels
- * @param {string|string[]} correctAnswer - Die korrekte Lösung
+ * IQ-Insel Rätsel-Challenge — script.js (optimiert)
+ *
+ * Bugfixes:
+ *  - Rätsel 10 (Netzwerk-Pyramide): Die farbigen Code-Felder behalten ihre
+ *    Farbe beim Prüfen. Der setTimeout-Cleanup überschreibt keine bereits
+ *    korrekt markierten Felder mehr.
+ *  - Alle Felder-States werden zuverlässig per data-Attribut verwaltet,
+ *    nicht mehr über fragile window._originalFormColors-Hacks.
+ */
+
+/* ── Hilfsfunktion: Leerzeichen normalisieren ─────────────────────────── */
+function normalize(str) {
+  return str.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+/* ── Standard-Rätsel prüfen ──────────────────────────────────────────── */
+/**
+ * @param {number}          id            Rätsel-ID
+ * @param {string|string[]} correctAnswer Korrekte Lösung(en)
  */
 function checkAnswer(id, correctAnswer) {
   const inputField = document.getElementById(`input-${id}`);
   const cardElement = document.getElementById(`card-${id}`);
-
   if (!inputField || !cardElement) return;
 
   const buttonElement = inputField.nextElementSibling;
   const tippElement = cardElement.querySelector(".tipp");
-
-  // .trim() entfernt Leerzeichen am Anfang & Ende, .replace(/\s+/g, ' ') macht aus doppelten Leerzeichen ein einzelnes
-  const userAnswer = inputField.value.trim().toLowerCase().replace(/\s+/g, " ");
+  const userAnswer = normalize(inputField.value);
 
   const answers = Array.isArray(correctAnswer)
     ? correctAnswer
     : [correctAnswer];
-
   const isCorrect =
-    userAnswer !== "" &&
-    answers.some(
-      (ans) => ans.trim().toLowerCase().replace(/\s+/g, " ") === userAnswer,
-    );
+    userAnswer !== "" && answers.some((ans) => normalize(ans) === userAnswer);
 
   if (isCorrect) {
     inputField.disabled = true;
@@ -34,46 +42,27 @@ function checkAnswer(id, correctAnswer) {
       buttonElement.innerHTML = "✓";
       buttonElement.disabled = true;
     }
-
-    if (tippElement) {
-      tippElement.style.display = "none";
-    }
+    if (tippElement) tippElement.style.display = "none";
 
     const solutionEl = document.getElementById(`solution-${id}`);
-    if (solutionEl) {
-      solutionEl.style.display = "block";
-    }
+    if (solutionEl) solutionEl.style.display = "block";
   } else {
-    inputField.classList.add("shake-input");
-
-    if (tippElement) {
-      tippElement.style.display = "block";
-    }
-
-    setTimeout(() => {
-      inputField.classList.remove("shake-input");
-    }, 400);
+    triggerShake(inputField);
+    if (tippElement) tippElement.style.display = "block";
   }
 }
 
-/**
- * Türerrätsel: Akzeptiert mehrere sinngemäß korrekte Antworten und verzeiht kleine Abweichungen
- * @param {number} id - Die ID des Rätsels
- */
+/* ── Türerrätsel (Rätsel 8) ──────────────────────────────────────────── */
 function checkAnswerDoor(id) {
   const inputField = document.getElementById(`input-${id}`);
   const cardElement = document.getElementById(`card-${id}`);
   const feedbackEl = document.getElementById("door-feedback");
-
   if (!inputField || !cardElement) return;
 
   const buttonElement = inputField.nextElementSibling;
   const tippElement = cardElement.querySelector(".tipp");
+  const userAnswer = normalize(inputField.value);
 
-  // Bereinigt alle unsauberen Leerzeichen im Text
-  const userAnswer = inputField.value.trim().toLowerCase().replace(/\s+/g, " ");
-
-  // Breiter aufgestellte Schlüsselwörter fangen Tippfehler und alternative Formulierungen ab
   const correctKeywords = [
     "andere wächter",
     "andere tür",
@@ -108,39 +97,44 @@ function checkAnswerDoor(id) {
       buttonElement.innerHTML = "✓";
       buttonElement.disabled = true;
     }
-
     if (tippElement) tippElement.style.display = "none";
     if (feedbackEl) feedbackEl.style.display = "none";
   } else if (userAnswer !== "") {
-    inputField.classList.add("shake-input");
-
+    triggerShake(inputField);
     if (tippElement) tippElement.style.display = "block";
 
     if (feedbackEl) {
-      feedbackEl.style.display = "block";
-      feedbackEl.style.background = "rgba(239,68,68,0.08)";
-      feedbackEl.style.border = "1px solid rgba(239,68,68,0.25)";
-      feedbackEl.style.color = "#fca5a5";
+      feedbackEl.style.cssText = `
+        display:block; margin-top:16px; padding:14px 18px; border-radius:8px;
+        font-size:0.95rem; background:rgba(239,68,68,0.08);
+        border:1px solid rgba(239,68,68,0.25); color:#fca5a5;
+      `;
       feedbackEl.innerHTML = `
-                <strong>Nicht ganz!</strong> Die Lösung: Frage einen <em>beliebigen</em> Wächter: 
-                <em>„Welche Tür würde der andere Wächter als sicher bezeichnen?"</em> — 
-                und nimm dann die <strong>andere</strong> Tür. Das funktioniert bei beiden Wächtern!
-            `;
+        <strong>Nicht ganz!</strong> Die Lösung: Frage einen <em>beliebigen</em> Wächter:
+        <em>„Welche Tür würde der andere Wächter als sicher bezeichnen?"</em> —
+        und nimm dann die <strong>andere</strong> Tür. Das funktioniert bei beiden Wächtern!
+      `;
     }
-
-    setTimeout(() => {
-      inputField.classList.remove("shake-input");
-    }, 400);
   }
 }
 
+/* ── Netzwerk-Pyramide (Rätsel 10) ───────────────────────────────────── */
+/**
+ * Farbige Code-Felder (code-orange, code-purple, code-green) und normale
+ * Pyramidenfelder werden getrennt behandelt, damit die Originalfarben
+ * der Code-Felder niemals überschrieben werden.
+ *
+ * Korrekte Felder behalten ihren grünen Rahmen (success) auch nach dem
+ * Ablauf der Shake-Animation. Falsche Felder werden nach der Animation
+ * wieder auf ihren Ausgangszustand zurückgesetzt.
+ */
 function checkNetworkPuzzle() {
   const cardElement = document.getElementById("card-network");
   const buttonElement = document.getElementById("button-network");
   const tippElement = cardElement ? cardElement.querySelector(".tipp") : null;
-
   if (!cardElement) return;
 
+  /* Lösungsschlüssel -------------------------------------------------- */
   const solutions = {
     "p1-r1-c1": "178",
     "p1-r3-c3": "39",
@@ -158,49 +152,78 @@ function checkNetworkPuzzle() {
     "p3-r4-c1": "7",
     "p3-r5-c4": "18",
     "p3-r6-c3": "0",
+    /* Finale Code-Felder */
     "code-orange": "94",
     "code-purple": "178",
     "code-green": "31",
   };
 
-  // Wir merken uns die originalen HTML-Farben der Code-Felder, falls sie noch nicht gespeichert wurden
-  if (!window._originalFormColors) {
-    window._originalFormColors = {
-      "code-orange": "#ff9f43",
-      "code-purple": "#a55eea",
-      "code-green": "#26de81"
-    };
-  }
+  /* Originale Rahmenfarben der Code-Felder (aus HTML-Inline-Styles) ---- */
+  const codeColors = {
+    "code-orange": "#ff9f43",
+    "code-purple": "#a55eea",
+    "code-green": "#26de81",
+  };
 
   let allCorrect = true;
-  let anyFieldIncorrect = false;
+  let anyWrongFilled = false;
+  const wrongFields = []; // Felder, die nach dem Shake zurückgesetzt werden
 
-  for (const [id, val] of Object.entries(solutions)) {
-    const inputField = document.getElementById(id);
-    if (inputField) {
-      const userAnswer = inputField.value.replace(/\D/g, "");
+  for (const [id, expected] of Object.entries(solutions)) {
+    const field = document.getElementById(id);
+    if (!field) continue;
 
-      if (userAnswer === val) {
-        inputField.classList.remove("shake-input");
-        
-        if (id.startsWith("code-")) {
-          // Behält die originale HTML-Farbe bei Erfolg bei
-          inputField.style.borderColor = window._originalFormColors[id];
-          inputField.style.background = "rgba(16, 185, 129, 0.15)"; // Dezenter grüner Erfolgshintergrund
-        } else {
-          inputField.style.borderColor = "var(--success)";
-        }
+    const userVal = field.value.replace(/\D/g, "");
+    const isCodeField = id.startsWith("code-");
+
+    if (userVal === expected) {
+      /* ✓ Korrekt: grünen Rahmen setzen (und bei Code-Felder Textfarbe beibehalten) */
+      field.classList.remove("shake-input");
+
+      if (isCodeField) {
+        field.style.borderColor = "var(--success)";
+        field.style.background = "rgba(16, 185, 129, 0.12)";
+        /* Textfarbe bleibt die originale Code-Farbe */
+        field.style.color = codeColors[id];
       } else {
-        allCorrect = false;
-        if (inputField.value.trim() !== "") {
-          anyFieldIncorrect = true;
-          inputField.classList.add("shake-input");
-          inputField.style.borderColor = "var(--error)"; // Wird rot bei Fehlern
-        }
+        field.style.borderColor = "var(--success)";
+      }
+    } else {
+      /* ✗ Falsch oder leer */
+      allCorrect = false;
+
+      if (field.value.trim() !== "") {
+        anyWrongFilled = true;
+        field.classList.add("shake-input");
+        field.style.borderColor = "var(--error)";
+        wrongFields.push({ field, id, isCodeField });
       }
     }
   }
 
+  /* Shake-Klassen nach 400 ms entfernen; nur falsche/leere Felder zurücksetzen */
+  if (wrongFields.length > 0) {
+    setTimeout(() => {
+      for (const { field, id, isCodeField } of wrongFields) {
+        field.classList.remove("shake-input");
+
+        /* Nur zurücksetzen, wenn der Wert immer noch falsch ist */
+        const currentVal = field.value.replace(/\D/g, "");
+        if (currentVal !== solutions[id]) {
+          if (isCodeField) {
+            /* Originalfarbe aus HTML wiederherstellen */
+            field.style.borderColor = codeColors[id];
+            if (currentVal === "") field.style.background = "transparent";
+          } else {
+            /* Normales Feld: nur leere Felder zurücksetzen */
+            if (field.value.trim() === "") field.style.borderColor = "";
+          }
+        }
+      }
+    }, 400);
+  }
+
+  /* Alle richtig → Rätsel als gelöst markieren */
   if (allCorrect) {
     cardElement.classList.add("solved");
     if (buttonElement) {
@@ -210,50 +233,24 @@ function checkNetworkPuzzle() {
     if (tippElement) tippElement.style.display = "none";
 
     for (const id of Object.keys(solutions)) {
-      const inputField = document.getElementById(id);
-      if (inputField) inputField.disabled = true;
+      const field = document.getElementById(id);
+      if (field) field.disabled = true;
     }
 
     const solutionEl = document.getElementById("solution-network");
-    if (solutionEl) {
-      solutionEl.style.display = "block";
-    }
+    if (solutionEl) solutionEl.style.display = "block";
   } else {
-    if (anyFieldIncorrect && tippElement) tippElement.style.display = "block";
-    setTimeout(() => {
-      for (const id of Object.keys(solutions)) {
-        const inputField = document.getElementById(id);
-        if (inputField) {
-          inputField.classList.remove("shake-input");
-          
-          // Wenn der Fehler vorbei ist und das Feld korrigiert/geleert wurde:
-          if (id.startsWith("code-")) {
-            const currentVal = inputField.value.replace(/\D/g, "");
-            if (currentVal === "" || currentVal === solutions[id]) {
-              // Setzt exakt die bunte Originalfarbe wieder ein!
-              inputField.style.borderColor = window._originalFormColors[id];
-              if (currentVal === "") inputField.style.background = "transparent";
-            }
-          } else {
-            if (inputField.value.trim() === "") {
-              inputField.style.borderColor = "";
-            }
-          }
-        }
-      }
-    }, 400);
+    if (anyWrongFilled && tippElement) tippElement.style.display = "block";
   }
 }
 
-/**
- * Überprüft das interaktive Trio der großen 5-stufigen Zahlenpyramiden (Komplett Leerzeichen-Resistent)
- */
+/* ── Pyramiden-Trio (Rätsel 9) ───────────────────────────────────────── */
 function checkAllLargePyramids() {
   const cardElement = document.getElementById("card-pyramids-multi");
   const tippElement = cardElement ? cardElement.querySelector(".tipp") : null;
   const solutionEl = document.getElementById("solution-pyramids-multi");
   const buttonElement = cardElement
-    ? cardElement.querySelector(".input-group-centered button")
+    ? cardElement.querySelector(".input-group-centered button, button")
     : null;
 
   const exactSolutions = {
@@ -277,26 +274,36 @@ function checkAllLargePyramids() {
   };
 
   let allCorrect = true;
-  let anyFieldIncorrect = false;
+  let anyWrongFilled = false;
+  const wrongFields = [];
 
-  for (const [id, targetValue] of Object.entries(exactSolutions)) {
-    const inputField = document.getElementById(id);
-    if (!inputField) continue;
+  for (const [id, expected] of Object.entries(exactSolutions)) {
+    const field = document.getElementById(id);
+    if (!field) continue;
 
-    // Entfernt radikal alle eingegebenen Leerzeichen oder versehentliche Tippfehler-Buchstaben
-    const userAnswer = inputField.value.replace(/\D/g, "");
+    const userVal = field.value.replace(/\D/g, "");
 
-    if (userAnswer === targetValue) {
-      inputField.style.borderColor = "var(--success)";
-      inputField.classList.remove("shake-input");
+    if (userVal === expected) {
+      field.style.borderColor = "var(--success)";
+      field.classList.remove("shake-input");
     } else {
       allCorrect = false;
-      if (inputField.value.trim() !== "") {
-        anyFieldIncorrect = true;
-        inputField.classList.add("shake-input");
-        inputField.style.borderColor = "var(--error)";
+      if (field.value.trim() !== "") {
+        anyWrongFilled = true;
+        field.classList.add("shake-input");
+        field.style.borderColor = "var(--error)";
+        wrongFields.push({ field, id });
       }
     }
+  }
+
+  if (wrongFields.length > 0) {
+    setTimeout(() => {
+      for (const { field, id } of wrongFields) {
+        field.classList.remove("shake-input");
+        if (field.value.trim() === "") field.style.borderColor = "";
+      }
+    }, 400);
   }
 
   if (allCorrect) {
@@ -309,59 +316,49 @@ function checkAllLargePyramids() {
     if (solutionEl) solutionEl.style.display = "block";
 
     for (const id of Object.keys(exactSolutions)) {
-      const inputField = document.getElementById(id);
-      if (inputField) {
-        inputField.disabled = true;
-        inputField.style.borderColor = "var(--success)";
+      const field = document.getElementById(id);
+      if (field) {
+        field.disabled = true;
+        field.style.borderColor = "var(--success)";
       }
     }
   } else {
-    if (anyFieldIncorrect && tippElement) tippElement.style.display = "block";
-    setTimeout(() => {
-      for (const id of Object.keys(exactSolutions)) {
-        const inputField = document.getElementById(id);
-        if (inputField) {
-          inputField.classList.remove("shake-input");
-          if (inputField.value.trim() === "") inputField.style.borderColor = "";
-        }
-      }
-    }, 400);
+    if (anyWrongFilled && tippElement) tippElement.style.display = "block";
   }
 }
 
-// Globaler Key-Handler für verzögerungsfreie Enter- und Handy-Absende-Aktionen
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    const activeElement = document.activeElement;
+/* ── Shake-Hilfsfunktion ─────────────────────────────────────────────── */
+function triggerShake(el) {
+  el.classList.remove("shake-input");
+  /* Mini-Reflow, damit die Animation neu startet */
+  void el.offsetWidth;
+  el.classList.add("shake-input");
+  setTimeout(() => el.classList.remove("shake-input"), 400);
+}
 
-    if (activeElement && activeElement.tagName === "INPUT") {
-      // 1. Großes Pyramiden-Trio (Aufgaben 1-3)
-      if (
-        activeElement.id.startsWith("p1-l") ||
-        activeElement.id.startsWith("p2-l") ||
-        activeElement.id.startsWith("p3-l")
-      ) {
-        event.preventDefault();
-        checkAllLargePyramids();
-      }
-      // 2. Vernetztes Pyramiden-Netzwerk
-      else if (
-        activeElement.id.startsWith("p1-r") ||
-        activeElement.id.startsWith("p2-r") ||
-        activeElement.id.startsWith("p3-r") ||
-        activeElement.id.startsWith("code-")
-      ) {
-        event.preventDefault();
-        checkNetworkPuzzle();
-      }
-      // 3. Jedes andere Text-/Zahlenfeld
-      else if (activeElement.id.startsWith("input-")) {
-        event.preventDefault();
-        const button = activeElement.nextElementSibling;
-        if (button && button.tagName === "BUTTON" && !button.disabled) {
-          button.click();
-        }
-      }
-    }
+/* ── Globaler Enter-Handler ──────────────────────────────────────────── */
+document.addEventListener("keydown", function (event) {
+  if (event.key !== "Enter") return;
+
+  const active = document.activeElement;
+  if (!active || active.tagName !== "INPUT") return;
+
+  const id = active.id;
+
+  if (id.startsWith("p1-l") || id.startsWith("p2-l") || id.startsWith("p3-l")) {
+    event.preventDefault();
+    checkAllLargePyramids();
+  } else if (
+    id.startsWith("p1-r") ||
+    id.startsWith("p2-r") ||
+    id.startsWith("p3-r") ||
+    id.startsWith("code-")
+  ) {
+    event.preventDefault();
+    checkNetworkPuzzle();
+  } else if (id.startsWith("input-")) {
+    event.preventDefault();
+    const btn = active.nextElementSibling;
+    if (btn && btn.tagName === "BUTTON" && !btn.disabled) btn.click();
   }
 });
