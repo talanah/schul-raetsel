@@ -1320,6 +1320,97 @@
             <button onclick="checkAnswer(14, '4')">Prüfen</button>
           </div>
         </div>
+
+        <div class="puzzle-card" id="card-15">
+          <div class="puzzle-header">
+            <span>Rätsel 15: Die Caesar-Chiffre</span>
+            <span class="badge">Mittel ⭐⭐</span>
+          </div>
+
+          <p>
+            <strong>Entschlüssele die geheime Botschaft!</strong> Der Schlüssel
+            verrät dir, wie viele Positionen die Buchstaben im Alphabet nach
+            vorne verschoben wurden.
+          </p>
+
+          <div class="caesar-box">
+            <div class="caesar-key">🔑 Schlüssel: +3 (A → D)</div>
+            <div class="caesar-cipher">"J H K H L P Q L V"</div>
+          </div>
+
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Wenn A zu D wird, musst du zum
+            Entschlüsseln 3 Schritte im Alphabet rückwärts gehen. Aus K wird
+            beispielsweise H.
+          </div>
+
+          <div class="input-group">
+            <input
+              type="text"
+              id="input-15"
+              placeholder="Dein Lösungswort..."
+            />
+            <button onclick="checkAnswer(15, 'GEHEIMNIS')">Prüfen</button>
+          </div>
+        </div>
+
+        <div class="puzzle-card" id="card-16">
+          <div class="puzzle-header">
+            <span>Rätsel 16: Das Logik-Zahlenschloss</span>
+            <span class="badge">Knifflig ⭐⭐⭐</span>
+          </div>
+
+          <p>
+            <strong>Knacke den dreistelligen Code!</strong> Analysiere die
+            Bedingungen der falschen Versuche:
+          </p>
+
+          <div class="lock-box">
+            <div class="lock-dial-container">
+              <div class="lock-dial">?</div>
+              <div class="lock-dial">?</div>
+              <div class="lock-dial">?</div>
+            </div>
+
+            <ul class="lock-hints">
+              <li>
+                <span class="hint-code">6 8 2</span> Eine Zahl is korrekt und an
+                der richtigen Stelle.
+              </li>
+              <li>
+                <span class="hint-code">6 1 4</span> Eine Zahl ist korrekt, aber
+                an der falschen Stelle.
+              </li>
+              <li>
+                <span class="hint-code">2 0 6</span> Zwei Zahlen sind korrekt,
+                aber beide an der falschen Stelle.
+              </li>
+              <li>
+                <span class="hint-code">7 3 8</span> Alle Zahlen sind komplett
+                falsch.
+              </li>
+              <li>
+                <span class="hint-code">3 8 0</span> Eine Zahl ist korrekt, aber
+                an der falschen Stelle.
+              </li>
+            </ul>
+          </div>
+
+          <div class="tipp">
+            💡 <strong>Tipp:</strong> Da '7 3 8' komplett falsch sind, kannst du
+            die 8 im ersten Hinweis ausschließen. Kombiniere die Hinweise für
+            die 6, 2 und 0.
+          </div>
+
+          <div class="input-group">
+            <input
+              type="text"
+              id="input-16"
+              placeholder="Dreistelliger Code..."
+            />
+            <button onclick="checkAnswer(16, '042')">Prüfen</button>
+          </div>
+        </div>
       </main>
     </div>
 

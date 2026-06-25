@@ -747,3 +747,109 @@ ol li {
     .cipher-row span { width: 26px; height: 26px; font-size: 0.72rem; }
     .matches-row { padding: 16px 20px; gap: 10px; }
 }
+
+/* Verhindert, dass der Browser gesperrte Felder in der gelösten Karte ausgraut */
+.puzzle-card.solved .pyr-input:disabled,
+.puzzle-card.solved .code-inputs-container input:disabled {
+  opacity: 1 !important;
+  -webkit-text-fill-color: currentcolor !important; /* Wichtig für Safari/iOS */
+  color: inherit !important;
+}
+
+/* --- STYLING FÜR GRAFIKLOSE RÄTSEL-ELEMENTE --- */
+
+/* Caesar Box Styling */
+.caesar-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px dashed rgba(255, 159, 67, 0.4);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.caesar-key {
+  font-size: 0.95rem;
+  color: #ff9f43;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.caesar-cipher {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Zahlenschloss Box Styling */
+.lock-box {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+/* Die Rädchen des Schlosses */
+.lock-dial-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.lock-dial {
+  background: linear-gradient(135deg, #2c3e50, #000000);
+  border: 2px solid #34495e;
+  border-radius: 8px;
+  width: 50px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #e74c3c;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* Die Hinweise-Liste */
+.lock-hints {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lock-hints li {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.lock-hints li:last-child {
+  margin-bottom: 0;
+}
+
+/* Die grau hinterlegten Zahlenblöcke der Hinweise */
+.hint-code {
+  background: #2f3640;
+  color: #f5f6fa;
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-right: 15px;
+  letter-spacing: 2px;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: inline-block;
+  min-width: 65px;
+  text-align: center;
+}

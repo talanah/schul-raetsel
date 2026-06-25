@@ -134,9 +134,6 @@ function checkAnswerDoor(id) {
   }
 }
 
-/**
- * Pyramiden-Netzwerk: Extrahiert nur die reinen Ziffern (ignoriert Leerzeichen komplett)
- */
 function checkNetworkPuzzle() {
   const cardElement = document.getElementById("card-network");
   const buttonElement = document.getElementById("button-network");
@@ -166,24 +163,39 @@ function checkNetworkPuzzle() {
     "code-green": "31",
   };
 
+  // Wir merken uns die originalen HTML-Farben der Code-Felder, falls sie noch nicht gespeichert wurden
+  if (!window._originalFormColors) {
+    window._originalFormColors = {
+      "code-orange": "#ff9f43",
+      "code-purple": "#a55eea",
+      "code-green": "#26de81"
+    };
+  }
+
   let allCorrect = true;
   let anyFieldIncorrect = false;
 
   for (const [id, val] of Object.entries(solutions)) {
     const inputField = document.getElementById(id);
     if (inputField) {
-      // .replace(/\D/g, '') filtert ALLES heraus, was keine Zahl ist (auch jegliche Leerzeichen!)
       const userAnswer = inputField.value.replace(/\D/g, "");
 
       if (userAnswer === val) {
         inputField.classList.remove("shake-input");
-        inputField.style.borderColor = "var(--success)";
+        
+        if (id.startsWith("code-")) {
+          // Behält die originale HTML-Farbe bei Erfolg bei
+          inputField.style.borderColor = window._originalFormColors[id];
+          inputField.style.background = "rgba(16, 185, 129, 0.15)"; // Dezenter grüner Erfolgshintergrund
+        } else {
+          inputField.style.borderColor = "var(--success)";
+        }
       } else {
         allCorrect = false;
         if (inputField.value.trim() !== "") {
           anyFieldIncorrect = true;
           inputField.classList.add("shake-input");
-          inputField.style.borderColor = "var(--error)";
+          inputField.style.borderColor = "var(--error)"; // Wird rot bei Fehlern
         }
       }
     }
@@ -213,7 +225,20 @@ function checkNetworkPuzzle() {
         const inputField = document.getElementById(id);
         if (inputField) {
           inputField.classList.remove("shake-input");
-          if (inputField.value.trim() === "") inputField.style.borderColor = "";
+          
+          // Wenn der Fehler vorbei ist und das Feld korrigiert/geleert wurde:
+          if (id.startsWith("code-")) {
+            const currentVal = inputField.value.replace(/\D/g, "");
+            if (currentVal === "" || currentVal === solutions[id]) {
+              // Setzt exakt die bunte Originalfarbe wieder ein!
+              inputField.style.borderColor = window._originalFormColors[id];
+              if (currentVal === "") inputField.style.background = "transparent";
+            }
+          } else {
+            if (inputField.value.trim() === "") {
+              inputField.style.borderColor = "";
+            }
+          }
         }
       }
     }, 400);
